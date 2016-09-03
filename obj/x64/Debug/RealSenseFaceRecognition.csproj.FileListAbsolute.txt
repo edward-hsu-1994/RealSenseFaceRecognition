@@ -1,0 +1,3 @@
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\DF_FaceTracking.cs.exe.config
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\DF_FaceTracking.cs.exe
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\DF_FaceTracking.cs.pdb

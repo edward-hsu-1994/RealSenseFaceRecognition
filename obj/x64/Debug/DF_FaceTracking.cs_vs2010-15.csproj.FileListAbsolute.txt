@@ -1,0 +1,11 @@
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\bin\x64\Debug\DF_FaceTracking.cs.exe.config
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\bin\x64\Debug\DF_FaceTracking.cs.exe
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\bin\x64\Debug\DF_FaceTracking.cs.pdb
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\bin\x64\Debug\libpxcclr.cs.dll
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\obj\x64\Debug\DF_FaceTracking.cs_vs2010-15.csprojResolveAssemblyReference.cache
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\obj\x64\Debug\DF_FaceTracking.cs.MainForm.resources
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\obj\x64\Debug\DF_FaceTracking.cs.Properties.Resources.resources
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\obj\x64\Debug\DF_FaceTracking.cs.RegisterForm.resources
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\obj\x64\Debug\DF_FaceTracking.cs_vs2010-15.csproj.GenerateResource.Cache
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\obj\x64\Debug\DF_FaceTracking.cs.exe
+C:\Users\XuPeiYao\Documents\RSSDK\Samples\DF_FaceTracking.cs\obj\x64\Debug\DF_FaceTracking.cs.pdb
