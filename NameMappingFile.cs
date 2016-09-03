@@ -37,7 +37,7 @@ namespace DF_FaceTracking.cs {
         /// <summary>
         /// 儲存檔案
         /// </summary>
-        /// <param name="file"路徑></param>
+        /// <param name="file">路徑</param>
         /// <param name="mappingCollection">名稱對應集合</param>
         public static void Save(string file,List<NameMappingFile> mappingCollection) {
             using (Stream stream = File.Open(file, FileMode.Create)) {
