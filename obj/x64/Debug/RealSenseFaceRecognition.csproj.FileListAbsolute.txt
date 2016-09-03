@@ -1,3 +1,13 @@
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\DF_FaceTracking.cs.exe.config
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\DF_FaceTracking.cs.exe
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\DF_FaceTracking.cs.pdb
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\DF_FaceTracking.cs.exe
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\DF_FaceTracking.cs.pdb
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\libpxcclr.cs.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\RealSenseFaceRecognition.csprojResolveAssemblyReference.cache
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\DF_FaceTracking.cs.MainForm.resources
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\DF_FaceTracking.cs.Properties.Resources.resources
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\DF_FaceTracking.cs.RegisterForm.resources
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\RealSenseFaceRecognition.csproj.GenerateResource.Cache
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\RealSenseSdkExtensions.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\RealSenseSdkExtensions.pdb

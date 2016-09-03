@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
+using RealSenseSdkExtensions;
+using System.IO;
 
 namespace DF_FaceTracking.cs
 {
@@ -11,7 +13,8 @@ namespace DF_FaceTracking.cs
         private readonly MainForm m_form;
         private FPSTimer m_timer;
         private bool m_wasConnected;
-
+        public static string FaceDataFilePath = "FaceData.bin";
+        public static string NameMappingFilePath = "NameMapping.bin";
         public FaceTracking(MainForm form)
         {
             m_form = form;
@@ -190,7 +193,25 @@ namespace DF_FaceTracking.cs
             if (m_form.IsRecognitionChecked())
             {
                 qrecognition.Enable();
+
+
+                #region 臉部辨識資料庫讀取
+                
+                if (File.Exists(FaceDataFilePath)) {
+                    m_form.UpdateStatus("正在讀取RealSense臉部辨識存檔", MainForm.Label.StatusLabel);
+
+                    RecognitionFaceDataFile.Load(FaceDataFilePath);
+                }
+
+                if (File.Exists(NameMappingFilePath)) {
+                    m_form.UpdateStatus("正在讀取使用者名稱對應存檔", MainForm.Label.StatusLabel);
+
+                    
+                }
+                #endregion
             }
+
+
 
             moduleConfiguration.EnableAllAlerts();
             moduleConfiguration.SubscribeAlert(FaceAlertHandler);
