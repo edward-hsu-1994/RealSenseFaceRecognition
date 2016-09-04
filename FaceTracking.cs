@@ -297,6 +297,15 @@ namespace DF_FaceTracking.cs
    //             moduleConfiguration.ApplyChanges();
                 m_form.UpdateStatus("Stopped", MainForm.Label.StatusLabel);
             }
+
+            #region 儲存臉部辨識資訊檔案
+            var recognitionData = faceModule.CreateOutput().QueryRecognitionModule();
+            
+            recognitionData.GetDatabase().Save(FaceDataFilePath);
+
+            cs.NameMapping.Save(NameMappingFilePath, NameMapping);
+            #endregion
+
             moduleConfiguration.Dispose();
             pp.Close();
             pp.Dispose();
