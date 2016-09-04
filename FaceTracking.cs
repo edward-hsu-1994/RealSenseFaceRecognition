@@ -15,9 +15,7 @@ namespace DF_FaceTracking.cs
         private FPSTimer m_timer;
         private bool m_wasConnected;
 
-
-        public static string FaceDataFilePath = "FaceData.bin";
-        public static string NameMappingFilePath = "NameMapping.bin";
+        public static string DatabasePath = "database.zip";
         public static List<NameMapping> NameMapping = new List<NameMapping>();
 
         public FaceTracking(MainForm form)
@@ -200,16 +198,11 @@ namespace DF_FaceTracking.cs
 
 
                 #region 臉部辨識資料庫讀取
-                if (File.Exists(FaceDataFilePath)) {
-                    m_form.UpdateStatus("正在讀取RealSense臉部辨識存檔", MainForm.Label.StatusLabel);
-
-                    RecognitionFaceDataFile.Load(FaceDataFilePath);
-                }
-
-                if (File.Exists(NameMappingFilePath)) {
-                    m_form.UpdateStatus("正在讀取使用者名稱對應存檔", MainForm.Label.StatusLabel);
-
-                    cs.NameMapping.Load(NameMappingFilePath);
+                if (File.Exists(DatabasePath)) {
+                    m_form.UpdateStatus("正在讀取資料庫", MainForm.Label.StatusLabel);
+                    List<RecognitionFaceData> faceData = null;
+                    FaceDatabaseFile.Load(DatabasePath, ref faceData, ref NameMapping);
+                    qrecognition.SetDatabase(faceData.ToArray());
                 }
                 #endregion
             }
@@ -300,10 +293,8 @@ namespace DF_FaceTracking.cs
 
             #region 儲存臉部辨識資訊檔案
             var recognitionData = faceModule.CreateOutput().QueryRecognitionModule();
-            
-            recognitionData.GetDatabase().Save(FaceDataFilePath);
 
-            cs.NameMapping.Save(NameMappingFilePath, NameMapping.ToArray());
+            FaceDatabaseFile.Save(DatabasePath, recognitionData.GetDatabase().ToList(), NameMapping);
             #endregion
 
             moduleConfiguration.Dispose();
