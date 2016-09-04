@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
 using RealSenseSdkExtensions;
 using System.IO;
+using System.Collections.Generic;
 
 namespace DF_FaceTracking.cs
 {
@@ -13,8 +14,12 @@ namespace DF_FaceTracking.cs
         private readonly MainForm m_form;
         private FPSTimer m_timer;
         private bool m_wasConnected;
+
+
         public static string FaceDataFilePath = "FaceData.bin";
         public static string NameMappingFilePath = "NameMapping.bin";
+        public static List<NameMapping> NameMapping = new List<NameMapping>();
+
         public FaceTracking(MainForm form)
         {
             m_form = form;
@@ -139,7 +144,6 @@ namespace DF_FaceTracking.cs
             }
             
             PXCMFaceConfiguration moduleConfiguration = faceModule.CreateActiveConfiguration();
-
             if (moduleConfiguration == null)
             {
                 Debug.Assert(moduleConfiguration != null);
@@ -196,7 +200,6 @@ namespace DF_FaceTracking.cs
 
 
                 #region 臉部辨識資料庫讀取
-                
                 if (File.Exists(FaceDataFilePath)) {
                     m_form.UpdateStatus("正在讀取RealSense臉部辨識存檔", MainForm.Label.StatusLabel);
 
@@ -206,7 +209,7 @@ namespace DF_FaceTracking.cs
                 if (File.Exists(NameMappingFilePath)) {
                     m_form.UpdateStatus("正在讀取使用者名稱對應存檔", MainForm.Label.StatusLabel);
 
-                    
+                    cs.NameMapping.Load(NameMappingFilePath);
                 }
                 #endregion
             }
@@ -243,6 +246,7 @@ namespace DF_FaceTracking.cs
                     m_form.UpdateStatus("Streaming", MainForm.Label.StatusLabel);
                     m_timer = new FPSTimer(m_form);
 
+                    #region loop
                     while (!m_form.Stopped)
                     {
                         if (pp.AcquireFrame(true) < pxcmStatus.PXCM_STATUS_NO_ERROR) break;
@@ -285,6 +289,7 @@ namespace DF_FaceTracking.cs
                         }
                         pp.ReleaseFrame();
                     }
+                    #endregion
 
                 }
 

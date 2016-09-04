@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace DF_FaceTracking.cs {
-    public class NameMappingFile {
+    public class NameMapping {
         /// <summary>
         /// 唯一識別
         /// </summary>
@@ -27,10 +27,10 @@ namespace DF_FaceTracking.cs {
         /// </summary>
         /// <param name="file">路徑</param>
         /// <returns>名稱對應集合</returns>
-        public static List<NameMappingFile> Load(string file) {
+        public static List<NameMapping> Load(string file) {
             using (Stream stream = File.Open(file, FileMode.Open)) {
                 var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                return (List<NameMappingFile>)binaryFormatter.Deserialize(stream);
+                return (List<NameMapping>)binaryFormatter.Deserialize(stream);
             }
         }
 
@@ -39,7 +39,7 @@ namespace DF_FaceTracking.cs {
         /// </summary>
         /// <param name="file">路徑</param>
         /// <param name="mappingCollection">名稱對應集合</param>
-        public static void Save(string file,List<NameMappingFile> mappingCollection) {
+        public static void Save(string file,List<NameMapping> mappingCollection) {
             using (Stream stream = File.Open(file, FileMode.Create)) {
                 var binaryFormatter = new BinaryFormatter();
                 binaryFormatter.Serialize(stream, mappingCollection);

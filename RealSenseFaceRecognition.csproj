@@ -78,6 +78,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="libpxcclr.cs, Version=10.0.26.396, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\libpxcclr.cs.10.0.26.397\lib\net40\libpxcclr.cs.dll</HintPath>
       <Private>True</Private>
@@ -93,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FaceDatabaseFile.cs" />
     <Compile Include="FaceTextOrganizer.cs" />
     <Compile Include="FaceTracking.cs" />
     <Compile Include="MainForm.cs">
