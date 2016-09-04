@@ -26,11 +26,11 @@ namespace DF_FaceTracking.cs {
         /// 讀取檔案
         /// </summary>
         /// <param name="file">路徑</param>
-        /// <returns>名稱對應集合</returns>
-        public static List<NameMapping> Load(string file) {
+        /// <returns>名稱對應陣列</returns>
+        public static NameMapping[] Load(string file) {
             using (Stream stream = File.Open(file, FileMode.Open)) {
                 var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                return (List<NameMapping>)binaryFormatter.Deserialize(stream);
+                return (NameMapping[])binaryFormatter.Deserialize(stream);
             }
         }
 
@@ -38,11 +38,11 @@ namespace DF_FaceTracking.cs {
         /// 自二進制陣列轉換為名稱對應檔案
         /// </summary>
         /// <param name="binary">二進制陣列</param>
-        /// <returns>名稱對應集合</returns>
-        public static List<NameMapping> FromBinary(byte[] binary) {
+        /// <returns>名稱對應陣列</returns>
+        public static NameMapping[] FromBinary(byte[] binary) {
             var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
             MemoryStream stream = new MemoryStream(binary);
-            return (List<NameMapping>)binaryFormatter.Deserialize(stream);
+            return (NameMapping[])binaryFormatter.Deserialize(stream);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace DF_FaceTracking.cs {
         /// </summary>
         /// <param name="file">路徑</param>
         /// <param name="mappingCollection">名稱對應集合</param>
-        public static void Save(string file,List<NameMapping> mappingCollection) {
+        public static void Save(string file,NameMapping[] mappingCollection) {
             using (Stream stream = File.Open(file, FileMode.Create)) {
                 var binaryFormatter = new BinaryFormatter();
                 binaryFormatter.Serialize(stream, mappingCollection);
@@ -58,11 +58,11 @@ namespace DF_FaceTracking.cs {
         }
 
         /// <summary>
-        /// 將名稱對應集合轉換為二進制陣列
+        /// 將名稱對應陣列轉換為二進制陣列
         /// </summary>
         /// <param name="mappingCollection">名稱對應集合</param>
         /// <returns>二進制陣列</returns>
-        public static byte[] ToBinary(List<NameMapping> mappingCollection) {
+        public static byte[] ToBinary(NameMapping[] mappingCollection) {
             using (MemoryStream stream = new MemoryStream()) {
                 var binaryFormatter = new BinaryFormatter();
                 binaryFormatter.Serialize(stream, mappingCollection);

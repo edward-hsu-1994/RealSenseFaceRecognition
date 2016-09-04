@@ -303,7 +303,7 @@ namespace DF_FaceTracking.cs
             
             recognitionData.GetDatabase().Save(FaceDataFilePath);
 
-            cs.NameMapping.Save(NameMappingFilePath, NameMapping);
+            cs.NameMapping.Save(NameMappingFilePath, NameMapping.ToArray());
             #endregion
 
             moduleConfiguration.Dispose();
