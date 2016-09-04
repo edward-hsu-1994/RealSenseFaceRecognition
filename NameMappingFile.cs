@@ -35,6 +35,17 @@ namespace DF_FaceTracking.cs {
         }
 
         /// <summary>
+        /// 自二進制陣列轉換為名稱對應檔案
+        /// </summary>
+        /// <param name="binary">二進制陣列</param>
+        /// <returns>名稱對應集合</returns>
+        public static List<NameMapping> FromBinary(byte[] binary) {
+            var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            MemoryStream stream = new MemoryStream(binary);
+            return (List<NameMapping>)binaryFormatter.Deserialize(stream);
+        }
+
+        /// <summary>
         /// 儲存檔案
         /// </summary>
         /// <param name="file">路徑</param>
@@ -43,6 +54,19 @@ namespace DF_FaceTracking.cs {
             using (Stream stream = File.Open(file, FileMode.Create)) {
                 var binaryFormatter = new BinaryFormatter();
                 binaryFormatter.Serialize(stream, mappingCollection);
+            }
+        }
+
+        /// <summary>
+        /// 將名稱對應集合轉換為二進制陣列
+        /// </summary>
+        /// <param name="mappingCollection">名稱對應集合</param>
+        /// <returns>二進制陣列</returns>
+        public static byte[] ToBinary(List<NameMapping> mappingCollection) {
+            using (MemoryStream stream = new MemoryStream()) {
+                var binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(stream, mappingCollection);
+                return stream.ToArray();
             }
         }
     }
