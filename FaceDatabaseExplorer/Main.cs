@@ -33,6 +33,26 @@ namespace FaceDatabaseExplorer {
             FaceDatabaseFile.Load(
                 openFileDialog1.FileName,
                 ref FaceData, ref NameMapping);
+            listBox1.Items.Clear();
+
+            listBox1.Items.AddRange(NameMapping.Select(x => $"{x.Id} - {x.Name}").ToArray());
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { 
+            if(listBox1.SelectedIndex < 0)return;
+            var filterFaceData = FaceData.Where(x => NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.Id)).ToArray();
+            imageList1.Images.Clear();
+            listView1.Items.Clear();
+            imageList1.Images
+                .AddRange(FaceData.Select(x => x.Image).ToArray());
+            listView1.Items
+                .AddRange(Enumerable.Range(0, filterFaceData.Length)
+                .Select(x=> {
+                    var result = new ListViewItem();
+                    result.ImageIndex = x;
+                    result.Text = filterFaceData[x].Id.ToString();
+                    return result;
+                }).ToArray());
         }
     }
 }

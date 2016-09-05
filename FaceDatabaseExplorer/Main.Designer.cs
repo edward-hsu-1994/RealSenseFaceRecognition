@@ -23,6 +23,7 @@
         /// 這個方法的內容。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.檔案FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.開啟OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -32,6 +33,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -104,10 +106,12 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(145, 266);
             this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // listView1
             // 
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(647, 266);
@@ -117,6 +121,12 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(128, 128);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // Main
             // 
@@ -150,6 +160,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
