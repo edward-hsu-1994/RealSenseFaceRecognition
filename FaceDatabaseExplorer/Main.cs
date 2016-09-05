@@ -18,10 +18,13 @@ namespace FaceDatabaseExplorer {
         public Main() {
             InitializeComponent();
 
-            #region 開啟檔案篩選
+            #region 開啟與儲存檔案篩選
             openFileDialog1.Filter = "Zip files (*.zip)|*.zip";
             openFileDialog1.FileName = null;
             openFileDialog1.Multiselect = false;
+
+            saveFileDialog1.Filter = "Zip files (*.zip)|*.zip";
+            saveFileDialog1.FileName = null;
             #endregion
 
             #region 圖片另存檔案篩選
@@ -32,6 +35,7 @@ namespace FaceDatabaseExplorer {
             #endregion
 
             儲存SToolStripMenuItem.Enabled = false;
+            SaveOtherStripMenuItem1.Enabled = false;
         }
 
         private void 關閉XToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -45,6 +49,7 @@ namespace FaceDatabaseExplorer {
                 ref FaceData, ref NameMapping);
             LoadDatabaseUser();
             儲存SToolStripMenuItem.Enabled = true;
+            SaveOtherStripMenuItem1.Enabled = true;
         }
 
         private void LoadDatabaseUser() {
@@ -145,6 +150,11 @@ namespace FaceDatabaseExplorer {
                 x.Image.Save(DirPath + "\\" + x.Id + ".jpg");
                 return 0;
             }).ToArray();
+        }
+
+        private void SaveOtherStripMenuItem1_Click(object sender, EventArgs e) {
+            if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
+            FaceDatabaseFile.Save(saveFileDialog1.FileName, FaceData, NameMapping);
         }
     }
 }

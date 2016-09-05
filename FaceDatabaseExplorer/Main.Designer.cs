@@ -47,6 +47,9 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveUserFolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaveOtherStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -71,6 +74,8 @@
             this.檔案FToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.開啟OToolStripMenuItem,
             this.儲存SToolStripMenuItem,
+            this.SaveOtherStripMenuItem1,
+            this.toolStripSeparator5,
             this.toolStripSeparator1,
             this.關閉XToolStripMenuItem});
             this.檔案FToolStripMenuItem.Name = "檔案FToolStripMenuItem";
@@ -141,24 +146,24 @@
             this.toolStripSeparator3,
             this.DeleteUserToolStripMenuItem});
             this.userContextMenuStrip1.Name = "userContextMenuStrip1";
-            this.userContextMenuStrip1.Size = new System.Drawing.Size(215, 104);
+            this.userContextMenuStrip1.Size = new System.Drawing.Size(215, 82);
             // 
             // editUserToolStripMenuItem
             // 
             this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
-            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.editUserToolStripMenuItem.Text = "編輯資訊";
             this.editUserToolStripMenuItem.Click += new System.EventHandler(this.editUserToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(199, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(211, 6);
             // 
             // DeleteUserToolStripMenuItem
             // 
             this.DeleteUserToolStripMenuItem.Name = "DeleteUserToolStripMenuItem";
-            this.DeleteUserToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.DeleteUserToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.DeleteUserToolStripMenuItem.Text = "刪除";
             this.DeleteUserToolStripMenuItem.Click += new System.EventHandler(this.DeleteUserToolStripMenuItem_Click);
             // 
@@ -215,7 +220,7 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(199, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(211, 6);
             // 
             // SaveUserToolStripMenuItem
             // 
@@ -223,6 +228,18 @@
             this.SaveUserToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.SaveUserToolStripMenuItem.Text = "另存使用者圖片(新增目錄)";
             this.SaveUserToolStripMenuItem.Click += new System.EventHandler(this.SaveUserToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            // 
+            // SaveOtherStripMenuItem1
+            // 
+            this.SaveOtherStripMenuItem1.Name = "SaveOtherStripMenuItem1";
+            this.SaveOtherStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.SaveOtherStripMenuItem1.Text = "另存新檔(&N)";
+            this.SaveOtherStripMenuItem1.Click += new System.EventHandler(this.SaveOtherStripMenuItem1_Click);
             // 
             // Main
             // 
@@ -272,6 +289,9 @@
         private System.Windows.Forms.ToolStripMenuItem SaveUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.FolderBrowserDialog SaveUserFolderBrowserDialog1;
+        private System.Windows.Forms.ToolStripMenuItem SaveOtherStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
