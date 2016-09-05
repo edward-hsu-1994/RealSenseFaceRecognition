@@ -13,3 +13,6 @@ C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\RealSe
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\RealSenseSdkExtensions.pdb
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\DotNetZip.dll
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\DotNetZip.xml
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\libpxccpp2c.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\RealSenseFaceRecognitionModule.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\RealSenseFaceRecognitionModule.pdb

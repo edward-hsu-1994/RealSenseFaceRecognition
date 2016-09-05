@@ -97,7 +97,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FaceDatabaseFile.cs" />
     <Compile Include="FaceTextOrganizer.cs" />
     <Compile Include="FaceTracking.cs" />
     <Compile Include="MainForm.cs">
@@ -107,7 +106,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ModuleSettings.cs" />
-    <Compile Include="NameMappingFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -174,6 +172,10 @@
     <ProjectReference Include="..\RealSenseSdkExtensions\RealSenseSdkExtensions\RealSenseSdkExtensions.csproj">
       <Project>{63ef804b-03df-4312-938b-4ac0e5af132e}</Project>
       <Name>RealSenseSdkExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="RealSenseFaceRecognitionModule\RealSenseFaceRecognitionModule.csproj">
+      <Project>{8e5b6b06-8d51-40bf-938a-2fb5332bfbb8}</Project>
+      <Name>RealSenseFaceRecognitionModule</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

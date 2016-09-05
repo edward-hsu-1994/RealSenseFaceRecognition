@@ -1,0 +1,11 @@
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\obj\Debug\RealSenseFaceRecognitionModule.csprojResolveAssemblyReference.cache
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\bin\Debug\libpxccpp2c.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\bin\Debug\RealSenseFaceRecognitionModule.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\bin\Debug\RealSenseFaceRecognitionModule.pdb
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\bin\Debug\DotNetZip.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\bin\Debug\libpxcclr.cs.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\bin\Debug\RealSenseSdkExtensions.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\bin\Debug\RealSenseSdkExtensions.pdb
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\bin\Debug\DotNetZip.xml
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\obj\Debug\RealSenseFaceRecognitionModule.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\RealSenseFaceRecognitionModule\obj\Debug\RealSenseFaceRecognitionModule.pdb
