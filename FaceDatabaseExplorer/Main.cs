@@ -42,11 +42,13 @@ namespace FaceDatabaseExplorer {
             FaceDatabaseFile.Load(
                 openFileDialog1.FileName,
                 ref FaceData, ref NameMapping);
-            listBox1.Items.Clear();
-
-            listBox1.Items.AddRange(NameMapping.Select(x => $"{x.Id} - {x.Name}").ToArray());
-
+            LoadDatabaseUser();
             儲存SToolStripMenuItem.Enabled = true;
+        }
+
+        private void LoadDatabaseUser() {
+            listBox1.Items.Clear();
+            listBox1.Items.AddRange(NameMapping.Select(x => $"{x.Id} - {x.Name}").ToArray());
         }
 
         private void 儲存SToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -56,6 +58,7 @@ namespace FaceDatabaseExplorer {
                 NameMapping
             );
         }
+
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { 
             if(listBox1.SelectedIndex < 0)return;
             var filterFaceData = FaceData.Where(x => NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.Id)).ToArray();
@@ -99,6 +102,18 @@ namespace FaceDatabaseExplorer {
             listBox1_SelectedIndexChanged(null, null);
         }
 
-        
+        private void DeleteUserToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (listBox1.SelectedIndex < 0) return;
+            var dialogResult = MessageBox.Show(
+                "您確定從臉部辨識資料庫中移除選擇的使用者所有資料嗎?",
+                "刪除使用者",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (dialogResult != DialogResult.Yes) return;
+            FaceData = FaceData.Where(x => !NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.Id)).ToList();
+            NameMapping.RemoveAt(listBox1.SelectedIndex);
+            LoadDatabaseUser();
+            listView1.Items.Clear();
+        }
     }
 }

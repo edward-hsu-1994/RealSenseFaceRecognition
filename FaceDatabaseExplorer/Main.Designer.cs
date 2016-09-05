@@ -34,18 +34,23 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.imageContextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DeleteImageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveImageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.儲存SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userContextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.DeleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.imageContextMenuStrip1.SuspendLayout();
+            this.userContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -107,6 +112,7 @@
             // 
             // listBox1
             // 
+            this.listBox1.ContextMenuStrip = this.userContextMenuStrip1;
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
@@ -118,7 +124,7 @@
             // 
             // listView1
             // 
-            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView1.ContextMenuStrip = this.imageContextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -138,19 +144,19 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // contextMenuStrip1
+            // imageContextMenuStrip1
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.imageContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SaveImageMenuItem,
             this.toolStripSeparator2,
             this.DeleteImageMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 54);
+            this.imageContextMenuStrip1.Name = "imageContextMenuStrip1";
+            this.imageContextMenuStrip1.Size = new System.Drawing.Size(123, 54);
             // 
             // DeleteImageMenuItem
             // 
             this.DeleteImageMenuItem.Name = "DeleteImageMenuItem";
-            this.DeleteImageMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DeleteImageMenuItem.Size = new System.Drawing.Size(122, 22);
             this.DeleteImageMenuItem.Text = "刪除";
             this.DeleteImageMenuItem.Click += new System.EventHandler(this.DeleteImageMenuItem_Click);
             // 
@@ -173,6 +179,33 @@
             this.儲存SToolStripMenuItem.Text = "儲存(&S)";
             this.儲存SToolStripMenuItem.Click += new System.EventHandler(this.儲存SToolStripMenuItem_Click);
             // 
+            // userContextMenuStrip1
+            // 
+            this.userContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripSeparator3,
+            this.DeleteUserToolStripMenuItem});
+            this.userContextMenuStrip1.Name = "userContextMenuStrip1";
+            this.userContextMenuStrip1.Size = new System.Drawing.Size(153, 76);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "編輯資訊";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            // 
+            // DeleteUserToolStripMenuItem
+            // 
+            this.DeleteUserToolStripMenuItem.Name = "DeleteUserToolStripMenuItem";
+            this.DeleteUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DeleteUserToolStripMenuItem.Text = "刪除";
+            this.DeleteUserToolStripMenuItem.Click += new System.EventHandler(this.DeleteUserToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -189,7 +222,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.imageContextMenuStrip1.ResumeLayout(false);
+            this.userContextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,12 +241,16 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip imageContextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem SaveImageMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem DeleteImageMenuItem;
         private System.Windows.Forms.SaveFileDialog saveImageFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem 儲存SToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip userContextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem DeleteUserToolStripMenuItem;
     }
 }
 
