@@ -348,12 +348,12 @@ namespace DF_FaceTracking.cs
                         Id = registerForm.Id,
                         Name = registerForm.Name
                     };
+                    NameMapping.Add(mapping);
                 }
                 if(registerForm.Name.Length > 0) {
                     mapping.Name = registerForm.Name;
                 }
                 mapping.DataIds.Add(realSenseId);
-                NameMapping.Add(mapping);
             }
             #endregion
         }
