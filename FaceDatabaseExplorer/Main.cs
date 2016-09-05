@@ -36,6 +36,7 @@ namespace FaceDatabaseExplorer {
 
             儲存SToolStripMenuItem.Enabled = false;
             SaveOtherStripMenuItem1.Enabled = false;
+            OutputStripMenuItem1.Enabled = false;
         }
 
         private void 關閉XToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -50,6 +51,7 @@ namespace FaceDatabaseExplorer {
             LoadDatabaseUser();
             儲存SToolStripMenuItem.Enabled = true;
             SaveOtherStripMenuItem1.Enabled = true;
+            OutputStripMenuItem1.Enabled = true;
         }
 
         private void LoadDatabaseUser() {
