@@ -20,9 +20,14 @@ namespace DF_FaceTracking.cs {
         public static void Save(string file,List<RecognitionFaceData> list, List<NameMapping> mapping) {
             using (FileStream outputStream = new FileStream(file, FileMode.Create))
             using (ZipFile zip = new ZipFile()) {
+                zip.Comment =
+                    "RealSenseFaceRecognition Database Files\r\n" +
+                    "UTC Time: " + DateTime.UtcNow.ToString("yyyy/MM/dd HH:mm:ss") + "\r\n" +
+                    "Id: " + Guid.NewGuid();
+
                 zip.AddEntry("NameMapping.bin", NameMapping.ToBinary(mapping.ToArray()));
                 zip.AddEntry("FaceData.bin", list.ToArray().ToBinary());
-                zip.Save();
+                zip.Save(outputStream);
             }
         }
 
@@ -35,9 +40,10 @@ namespace DF_FaceTracking.cs {
         public static void Load(string file,ref List<RecognitionFaceData> list,ref List<NameMapping> mapping) {
             using (ZipFile zip = ZipFile.Read(file)) {
                 var nameMappingReader = zip["NameMapping.bin"].OpenReader();
+                mapping = NameMapping.FromBinary(StreamToBytes(nameMappingReader)).ToList();
+
                 var faceDataReader = zip["FaceData.bin"].OpenReader();
 
-                mapping = NameMapping.FromBinary(StreamToBytes(nameMappingReader)).ToList();
                 list = RecognitionFaceDataFile.FromBinary(StreamToBytes(faceDataReader)).ToList();
             }
         }
