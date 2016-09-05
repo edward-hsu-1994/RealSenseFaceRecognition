@@ -48,5 +48,21 @@ namespace DF_FaceTracking.cs {
             DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void RegisterForm_Load(object sender, EventArgs e) {
+            this.textBox1.Focus();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e) {
+            var id = textBox1.Text.Trim();
+            if (id.Length == 0) return;
+
+            var mapping = FaceTracking.NameMapping.Where(x => x.Id == id).FirstOrDefault();
+            if(mapping == null) {
+                textBox2.Text = "";
+            } else {
+                textBox2.Text = mapping.Name;
+            }
+        }
     }
 }
