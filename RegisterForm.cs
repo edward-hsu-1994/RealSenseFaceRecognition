@@ -22,6 +22,19 @@ namespace DF_FaceTracking.cs {
         /// 使用者名稱
         /// </summary>
         public new string Name { get; private set; }
+
+        /// <summary>
+        /// 顯示圖片
+        /// </summary>
+        public Image Picture {
+            get {
+                return pictureBox1.Image;
+            }
+            set {
+                pictureBox1.Image = value;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e) {
             string id = textBox1.Text.Trim();
             string name = textBox1.Text.Trim();
