@@ -203,7 +203,7 @@ namespace DF_FaceTracking.cs
                     m_form.UpdateStatus("正在讀取資料庫", MainForm.Label.StatusLabel);
                     List<RecognitionFaceData> faceData = null;
                     FaceDatabaseFile.Load(DatabasePath, ref faceData, ref NameMapping);
-                    FaceData = FaceData.ToArray();
+                    FaceData = faceData.ToArray();
                     qrecognition.SetDatabase(FaceData);
                 }
                 #endregion
