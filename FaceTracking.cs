@@ -16,8 +16,9 @@ namespace DF_FaceTracking.cs
         private bool m_wasConnected;
 
         public static string DatabasePath = "database.zip";
+        private static bool DatabaseChanged = false;
         public static List<NameMapping> NameMapping = new List<NameMapping>();
-
+        public static RecognitionFaceData[] FaceData = new RecognitionFaceData[0];
         public FaceTracking(MainForm form)
         {
             m_form = form;
@@ -202,7 +203,8 @@ namespace DF_FaceTracking.cs
                     m_form.UpdateStatus("正在讀取資料庫", MainForm.Label.StatusLabel);
                     List<RecognitionFaceData> faceData = null;
                     FaceDatabaseFile.Load(DatabasePath, ref faceData, ref NameMapping);
-                    qrecognition.SetDatabase(faceData.ToArray());
+                    FaceData = FaceData.ToArray();
+                    qrecognition.SetDatabase(FaceData);
                 }
                 #endregion
             }
@@ -292,9 +294,9 @@ namespace DF_FaceTracking.cs
             }
 
             #region 儲存臉部辨識資訊檔案
-            var recognitionData = faceModule.CreateOutput().QueryRecognitionModule();
-
-            FaceDatabaseFile.Save(DatabasePath, recognitionData.GetDatabase().ToList(), NameMapping);
+            if (DatabaseChanged) {
+                FaceDatabaseFile.Save(DatabasePath, FaceData.ToList(), NameMapping);
+            }
             #endregion
 
             moduleConfiguration.Dispose();
@@ -307,6 +309,8 @@ namespace DF_FaceTracking.cs
             //TODO: add null checks
             if (m_form.Register) RegisterUser(faceOutput);
             if (m_form.Unregister) UnregisterUser(faceOutput);
+            FaceData = faceOutput.QueryRecognitionModule().GetDatabase();
+            DatabaseChanged = true;
         }
 
         private void RegisterUser(PXCMFaceData faceOutput)
