@@ -23,7 +23,7 @@ namespace DF_FaceTracking.cs {
                 zip.Comment =
                     "RealSenseFaceRecognition Database Files\r\n" +
                     "UTC Time: " + DateTime.UtcNow.ToString("yyyy/MM/dd HH:mm:ss") + "\r\n" +
-                    "Id: " + Guid.NewGuid();
+                    "Guid: " + Guid.NewGuid();
 
                 zip.AddEntry("NameMapping.bin", NameMapping.ToBinary(mapping.ToArray()));
                 zip.AddEntry("FaceData.bin", list.ToArray().ToBinary());
