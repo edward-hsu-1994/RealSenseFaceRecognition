@@ -37,7 +37,7 @@ namespace DF_FaceTracking.cs {
 
         private void button1_Click(object sender, EventArgs e) {
             string id = textBox1.Text.Trim();
-            string name = textBox1.Text.Trim();
+            string name = textBox2.Text.Trim();
             if(id.Length == 0 || name.Length == 0) {
                 //error
                 MessageBox.Show("ID與Name不該為空字串","資料缺漏",MessageBoxButtons.OK, MessageBoxIcon.Error);

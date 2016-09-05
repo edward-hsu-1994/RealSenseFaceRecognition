@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace DF_FaceTracking.cs {
+    [Serializable]
     public class NameMapping {
         /// <summary>
         /// 唯一識別
