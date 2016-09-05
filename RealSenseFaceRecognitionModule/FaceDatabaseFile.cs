@@ -18,6 +18,7 @@ namespace DF_FaceTracking.cs {
         /// <param name="list">臉部辨識資料</param>
         /// <param name="mapping">名稱對應資料</param>
         public static void Save(string file,List<RecognitionFaceData> list, List<NameMapping> mapping) {
+            FormatData(list, mapping);
             using (FileStream outputStream = new FileStream(file, FileMode.Create))
             using (ZipFile zip = new ZipFile()) {
                 zip.Comment =
@@ -28,6 +29,34 @@ namespace DF_FaceTracking.cs {
                 zip.AddEntry("NameMapping.bin", NameMapping.ToBinary(mapping.ToArray()));
                 zip.AddEntry("FaceData.bin", list.ToArray().ToBinary());
                 zip.Save(outputStream);
+            }
+        }
+
+        /// <summary>
+        /// 格式錯誤處理，校正可能重複的Face ID
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="mapping"></param>
+        public static void FormatData(
+            List<RecognitionFaceData> list,
+            List<NameMapping> mapping) {
+            list = list.OrderBy(x => x.Index).Select((x, i) => { x.Index = i; return x; }).ToList();
+
+            List<KeyValuePair<int, int>> oldAndNewId = new List<KeyValuePair<int, int>>();
+            for(int i = 0; i < list.Count; i++) {
+                var item = list[i];
+                int NewID = item.Index + 100;
+                oldAndNewId.Add(new KeyValuePair<int, int>(item.Id, NewID));
+                item.Id = NewID;
+                list[i] = item;
+            }
+            
+            foreach(var rep in oldAndNewId) {
+                foreach(var user in mapping) {
+                    if (user.DataIds.Remove(rep.Key)) {
+                        user.DataIds.Add(rep.Value);
+                    }                    
+                }
             }
         }
 
@@ -46,6 +75,7 @@ namespace DF_FaceTracking.cs {
 
                 list = RecognitionFaceDataFile.FromBinary(StreamToBytes(faceDataReader)).ToList();
             }
+            FormatData(list, mapping);
         }
 
         private static byte[] StreamToBytes(Stream stream) {

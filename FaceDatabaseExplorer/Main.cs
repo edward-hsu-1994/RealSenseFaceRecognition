@@ -93,7 +93,8 @@ namespace FaceDatabaseExplorer {
         private void DeleteImageMenuItem_Click(object sender, EventArgs e) {
             if (listBox1.SelectedIndex < 0) return;
             var dialogResult = MessageBox.Show(
-                "您確定從臉部辨識資料庫中移除選擇的圖片嗎?",
+                "您確定從臉部辨識資料庫中移除選擇的圖片嗎?\r\n"+
+                "執行此動作後圖像ID將會自動重新修正",
                 "刪除圖片",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -105,19 +106,22 @@ namespace FaceDatabaseExplorer {
                 .Where(x => x.Id == int.Parse(item.Text))
                 .FirstOrDefault());
 
+            FaceDatabaseFile.FormatData(FaceData, NameMapping);
             listBox1_SelectedIndexChanged(null, null);
         }
 
         private void DeleteUserToolStripMenuItem_Click(object sender, EventArgs e) {
             if (listBox1.SelectedIndex < 0) return;
             var dialogResult = MessageBox.Show(
-                "您確定從臉部辨識資料庫中移除選擇的使用者所有資料嗎?",
+                "您確定從臉部辨識資料庫中移除選擇的使用者所有資料嗎?\r\n" +
+                "執行此動作後圖像ID將會自動重新修正",
                 "刪除使用者",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (dialogResult != DialogResult.Yes) return;
             FaceData = FaceData.Where(x => !NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.Id)).ToList();
             NameMapping.RemoveAt(listBox1.SelectedIndex);
+            FaceDatabaseFile.FormatData(FaceData, NameMapping);
             LoadDatabaseUser();
             listView1.Items.Clear();
         }
