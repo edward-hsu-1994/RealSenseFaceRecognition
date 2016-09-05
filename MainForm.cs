@@ -1060,7 +1060,18 @@ namespace DF_FaceTracking.cs
                 throw new Exception(" PXCMFaceData.RecognitionData null");
             }
             var userId = qrecognition.QueryUserID();
-            var recognitionText = userId == -1 ? "Not Registered" : String.Format("Registered ID: {0}", userId);
+            #region 顯示辨識結果
+            string recognitionText = null;
+            if (userId == -1) {
+                recognitionText = "Not Registered";
+            } else {
+                var mapping = FaceTracking.NameMapping.Where(x => x.DataIds.Contains(userId)).FirstOrDefault();
+                if(mapping != null) {
+                    recognitionText = $"{mapping.Id} - {mapping.Name}";
+                }
+            }
+            #endregion
+
 
             lock (m_bitmapLock)
             {
