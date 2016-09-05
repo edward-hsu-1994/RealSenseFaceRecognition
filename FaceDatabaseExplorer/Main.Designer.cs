@@ -41,7 +41,7 @@
             this.saveImageFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.儲存SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userContextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.DeleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -182,17 +182,18 @@
             // userContextMenuStrip1
             // 
             this.userContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
+            this.editUserToolStripMenuItem,
             this.toolStripSeparator3,
             this.DeleteUserToolStripMenuItem});
             this.userContextMenuStrip1.Name = "userContextMenuStrip1";
             this.userContextMenuStrip1.Size = new System.Drawing.Size(153, 76);
             // 
-            // toolStripMenuItem1
+            // editUserToolStripMenuItem
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem1.Text = "編輯資訊";
+            this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
+            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editUserToolStripMenuItem.Text = "編輯資訊";
+            this.editUserToolStripMenuItem.Click += new System.EventHandler(this.editUserToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -248,7 +249,7 @@
         private System.Windows.Forms.SaveFileDialog saveImageFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem 儲存SToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip userContextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem editUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem DeleteUserToolStripMenuItem;
     }

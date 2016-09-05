@@ -12,8 +12,8 @@ using System.Windows.Forms;
 
 namespace FaceDatabaseExplorer {
     public partial class Main : Form {
-        public List<NameMapping> NameMapping = null;
-        public List<RecognitionFaceData> FaceData = null;
+        public static List<NameMapping> NameMapping = null;
+        public static List<RecognitionFaceData> FaceData = null;
         public Main() {
             InitializeComponent();
 
@@ -114,6 +114,20 @@ namespace FaceDatabaseExplorer {
             NameMapping.RemoveAt(listBox1.SelectedIndex);
             LoadDatabaseUser();
             listView1.Items.Clear();
+        }
+
+        private void editUserToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (listBox1.SelectedIndex < 0) return;
+
+            EditUser editor = new EditUser() {
+                Id = NameMapping[listBox1.SelectedIndex].Id,
+                Name = NameMapping[listBox1.SelectedIndex].Name
+            };
+            if (editor.ShowDialog() != DialogResult.OK) return;
+
+            NameMapping[listBox1.SelectedIndex].Id = editor.Id;
+            NameMapping[listBox1.SelectedIndex].Name = editor.Name;
+            LoadDatabaseUser();
         }
     }
 }

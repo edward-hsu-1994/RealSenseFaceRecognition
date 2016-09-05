@@ -31,3 +31,4 @@ C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\FaceDatabaseExplorer
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\FaceDatabaseExplorer\obj\Debug\FaceDatabaseExplorer.Main.resources
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\FaceDatabaseExplorer\obj\Debug\FaceDatabaseExplorer.Properties.Resources.resources
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\FaceDatabaseExplorer\obj\Debug\FaceDatabaseExplorer.csproj.GenerateResource.Cache
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\FaceDatabaseExplorer\obj\Debug\FaceDatabaseExplorer.EditUser.resources
