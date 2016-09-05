@@ -325,7 +325,33 @@ namespace DF_FaceTracking.cs
             {
                 throw new Exception(" PXCMFaceData.RecognitionData null");
             }
-            rdata.RegisterUser();
+            #region 註冊視窗
+            int realSenseId = rdata.RegisterUser();
+            var dbItem = faceOutput.QueryRecognitionModule()
+                .GetDatabase()
+                .Where(x => x.Id == realSenseId)
+                .FirstOrDefault();
+            if (dbItem.Equals(default(RecognitionFaceData))) return;
+
+            var registerForm = new RegisterForm() {
+                Picture = dbItem.Image
+            };
+
+            if(registerForm.ShowDialog() == DialogResult.OK) {
+                var mapping = NameMapping.Where(x => x.Id == registerForm.Id).FirstOrDefault();
+                if(mapping == null) {
+                    mapping = new NameMapping() {
+                        Id = registerForm.Id,
+                        Name = registerForm.Name
+                    };
+                }
+                if(registerForm.Name.Length > 0) {
+                    mapping.Name = registerForm.Name;
+                }
+                mapping.DataIds.Add(realSenseId);
+                NameMapping.Add(mapping);
+            }
+            #endregion
         }
 
         private void UnregisterUser(PXCMFaceData faceOutput)
@@ -352,6 +378,13 @@ namespace DF_FaceTracking.cs
             {
                 return;
             }
+            #region 解除註冊
+            var realSenseId = rdata.QueryUserID();
+            var mapping = NameMapping.Where(x => x.DataIds.Contains(realSenseId)).FirstOrDefault();
+            if (mapping != null) {
+                mapping.DataIds.Remove(realSenseId);
+            }
+            #endregion
             rdata.UnregisterUser();
         }
     }

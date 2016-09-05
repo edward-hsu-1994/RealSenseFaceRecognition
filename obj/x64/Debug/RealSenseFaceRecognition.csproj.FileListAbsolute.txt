@@ -11,3 +11,5 @@ C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\DF_Fac
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\obj\x64\Debug\RealSenseFaceRecognition.csproj.GenerateResource.Cache
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\RealSenseSdkExtensions.dll
 C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\RealSenseSdkExtensions.pdb
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\DotNetZip.dll
+C:\Users\XuPeiYao\Documents\GitHub\RealSenseFaceRecognition\bin\x64\Debug\DotNetZip.xml
