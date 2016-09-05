@@ -156,5 +156,23 @@ namespace FaceDatabaseExplorer {
             if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
             FaceDatabaseFile.Save(saveFileDialog1.FileName, FaceData, NameMapping);
         }
+
+        private void ConvertToDirToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (SaveUserFolderBrowserDialog1.ShowDialog() != DialogResult.OK) return;
+
+            for (int i = 0; i < listBox1.Items.Count; i++) {
+                string DirPath = SaveUserFolderBrowserDialog1.SelectedPath +
+                        "\\" + NameMapping[i].Id;
+                if (!Directory.Exists(DirPath)) {
+                    Directory.CreateDirectory(DirPath);
+                }
+
+                FaceData.Where(x => NameMapping[i].DataIds.Contains(x.Id))
+                .Select(x => {
+                    x.Image.Save(DirPath + "\\" + x.Id + ".jpg");
+                    return 0;
+                }).ToArray();
+            }
+        }
     }
 }

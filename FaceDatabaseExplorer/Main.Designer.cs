@@ -50,6 +50,8 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveOtherStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConvertToDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -76,6 +78,7 @@
             this.儲存SToolStripMenuItem,
             this.SaveOtherStripMenuItem1,
             this.toolStripSeparator5,
+            this.toolStripMenuItem1,
             this.toolStripSeparator1,
             this.關閉XToolStripMenuItem});
             this.檔案FToolStripMenuItem.Name = "檔案FToolStripMenuItem";
@@ -241,6 +244,21 @@
             this.SaveOtherStripMenuItem1.Text = "另存新檔(&N)";
             this.SaveOtherStripMenuItem1.Click += new System.EventHandler(this.SaveOtherStripMenuItem1_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ConvertToDirToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "匯出(&E)";
+            // 
+            // ConvertToDirToolStripMenuItem
+            // 
+            this.ConvertToDirToolStripMenuItem.Name = "ConvertToDirToolStripMenuItem";
+            this.ConvertToDirToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.ConvertToDirToolStripMenuItem.Text = "至目錄，且依ID新建使用者圖檔目錄";
+            this.ConvertToDirToolStripMenuItem.Click += new System.EventHandler(this.ConvertToDirToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -292,6 +310,8 @@
         private System.Windows.Forms.ToolStripMenuItem SaveOtherStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ConvertToDirToolStripMenuItem;
     }
 }
 
