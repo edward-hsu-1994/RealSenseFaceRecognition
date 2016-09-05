@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -128,6 +129,22 @@ namespace FaceDatabaseExplorer {
             NameMapping[listBox1.SelectedIndex].Id = editor.Id;
             NameMapping[listBox1.SelectedIndex].Name = editor.Name;
             LoadDatabaseUser();
+        }
+
+        private void SaveUserToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (listBox1.SelectedIndex < 0) return;            
+            if (SaveUserFolderBrowserDialog1.ShowDialog() != DialogResult.OK) return;
+            string DirPath = SaveUserFolderBrowserDialog1.SelectedPath +
+                    "\\" + NameMapping[listBox1.SelectedIndex].Id;
+            if (!Directory.Exists(DirPath)) {
+                Directory.CreateDirectory(DirPath);
+            }
+
+            FaceData.Where(x => NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.Id))
+            .Select(x => {
+                x.Image.Save(DirPath + "\\" + x.Id + ".jpg");
+                return 0;
+            }).ToArray();
         }
     }
 }
