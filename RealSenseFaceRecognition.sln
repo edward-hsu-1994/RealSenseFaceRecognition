@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealSenseFaceRecognition", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealSenseSdkExtensions", "..\RealSenseSdkExtensions\RealSenseSdkExtensions\RealSenseSdkExtensions.csproj", "{63EF804B-03DF-4312-938B-4AC0E5AF132E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceDatabaseExplorer", "..\FaceDatabaseExplorer\FaceDatabaseExplorer.csproj", "{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{63EF804B-03DF-4312-938B-4AC0E5AF132E}.Release|x64.Build.0 = Release|Any CPU
 		{63EF804B-03DF-4312-938B-4AC0E5AF132E}.Release|x86.ActiveCfg = Release|Any CPU
 		{63EF804B-03DF-4312-938B-4AC0E5AF132E}.Release|x86.Build.0 = Release|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Debug|x64.Build.0 = Debug|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Debug|x86.Build.0 = Debug|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Release|x64.ActiveCfg = Release|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Release|x64.Build.0 = Release|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Release|x86.ActiveCfg = Release|Any CPU
+		{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
