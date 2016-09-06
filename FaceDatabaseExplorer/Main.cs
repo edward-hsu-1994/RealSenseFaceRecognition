@@ -27,7 +27,13 @@ namespace FaceDatabaseExplorer {
             saveFileDialog1.FileName = null;
             #endregion
 
-            #region 圖片另存檔案篩選
+            #region 圖片開啟與另存檔案篩選
+            openImageFileDialog1.Filter =
+                "JPEG files (*.jpg)|*.jpg|" +
+                "BMP files (*.bmp)|*.bmp";
+            openImageFileDialog1.FileName = null;
+            openImageFileDialog1.Multiselect = false;
+
             saveImageFileDialog1.Filter = 
                 "JPEG files (*.jpg)|*.jpg|"+
                 "BMP files (*.bmp)|*.bmp";
@@ -45,10 +51,16 @@ namespace FaceDatabaseExplorer {
 
         private void 開啟OToolStripMenuItem_Click(object sender, EventArgs e) {
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
+            listBox1.Items.Clear();
+            listView1.Items.Clear();
             FaceDatabaseFile.Load(
                 openFileDialog1.FileName,
                 ref FaceData, ref NameMapping);
             LoadDatabaseUser();
+            EnableSave();
+        }
+
+        private void EnableSave() {
             儲存SToolStripMenuItem.Enabled = true;
             SaveOtherStripMenuItem1.Enabled = true;
             OutputStripMenuItem1.Enabled = true;
@@ -73,7 +85,7 @@ namespace FaceDatabaseExplorer {
             imageList1.Images.Clear();
             listView1.Items.Clear();
             imageList1.Images
-                .AddRange(FaceData.Select(x => x.Image).ToArray());
+                .AddRange(filterFaceData.Select(x => x.Image).ToArray());
             listView1.Items
                 .AddRange(Enumerable.Range(0, filterFaceData.Length)
                 .Select(x=> {
@@ -179,6 +191,42 @@ namespace FaceDatabaseExplorer {
                     return 0;
                 }).ToArray();
             }
+        }
+
+        private void AddImageToolStripMenuItem1_Click(object sender, EventArgs e) {
+            if (listBox1.SelectedIndex < 0) return;
+            if(openImageFileDialog1.ShowDialog() != DialogResult.OK) return;
+            FaceDatabaseFile.FormatData(FaceData, NameMapping);
+            var image = new Bitmap(openImageFileDialog1.FileName);
+            if(image.Size.Height != 128 || image.Size.Width != 128) {
+                MessageBox.Show("圖片尺寸必須為128*128", "圖片大小錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }                        
+            var faceData = new RecognitionFaceData(null) {
+                Image = image,
+                Index = FaceData.Count,
+                Id = 100 + FaceData.Count
+            };
+            FaceData.Add(faceData);
+            NameMapping[listBox1.SelectedIndex].DataIds.Add(faceData.Id);
+            FaceDatabaseFile.FormatData(FaceData, NameMapping);
+            listBox1_SelectedIndexChanged(null, null);
+        }
+
+        private void AddUserToolStripMenuItem1_Click(object sender, EventArgs e) {
+            var editor = new EditUser() {
+                Id = "", Name = ""
+            };
+            if (editor.ShowDialog() != DialogResult.OK) return;
+
+            NameMapping.Add(
+                new NameMapping() {
+                    Id = editor.Id,
+                    Name = editor.Name
+                }
+            );
+            LoadDatabaseUser();
+            EnableSave();
         }
     }
 }
