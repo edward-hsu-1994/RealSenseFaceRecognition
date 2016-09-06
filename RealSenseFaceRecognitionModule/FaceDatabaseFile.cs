@@ -40,6 +40,24 @@ namespace DF_FaceTracking.cs {
         public static void FormatData(
             List<RecognitionFaceData> list,
             List<NameMapping> mapping) {
+
+
+            #region remove not used
+            //沒用到的圖像
+            foreach (var item in list.ToArray()) {
+                if (!mapping.Any(x => x.DataIds.Contains(item.Id))) {
+                    list.Remove(item);
+                }
+            }
+
+            //無用的ID
+            foreach(var user in mapping) {
+                user.DataIds = user.DataIds
+                    .Where(x => list.Select(y => y.Id).Contains(x))
+                    .ToList();
+            }
+            #endregion
+
             list = list.OrderBy(x => x.Index).Select((x, i) => { x.Index = i; return x; }).ToList();
 
             List<KeyValuePair<int, int>> oldAndNewId = new List<KeyValuePair<int, int>>();
