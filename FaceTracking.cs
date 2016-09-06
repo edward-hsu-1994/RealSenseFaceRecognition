@@ -73,6 +73,8 @@ namespace DF_FaceTracking.cs
             m_form.UpdateStatus(alert.label.ToString(), MainForm.Label.StatusLabel);
         }
 
+
+        PXCMFaceConfiguration.RecognitionConfiguration qrecognition=null;
         public void SimplePipeline()
         {
             PXCMSenseManager pp = m_form.Session.CreateSenseManager();
@@ -188,7 +190,7 @@ namespace DF_FaceTracking.cs
                 pulseConfiguration.Enable();
             }
 
-            PXCMFaceConfiguration.RecognitionConfiguration qrecognition = moduleConfiguration.QueryRecognition();
+            qrecognition = moduleConfiguration.QueryRecognition();
             if (qrecognition == null)
             {
                 throw new Exception("PXCMFaceConfiguration.RecognitionConfiguration null");
@@ -285,7 +287,6 @@ namespace DF_FaceTracking.cs
                         pp.ReleaseFrame();
                     }
                     #endregion
-
                 }
 
    //             moduleConfiguration.UnsubscribeAlert(FaceAlertHandler);
@@ -298,6 +299,9 @@ namespace DF_FaceTracking.cs
                 FaceDatabaseFile.Save(DatabasePath, FaceData.ToList(), NameMapping);
             }
             #endregion
+
+            var dbm = new FaceDatabaseManager(pp);
+            
 
             moduleConfiguration.Dispose();
             pp.Close();
@@ -330,13 +334,28 @@ namespace DF_FaceTracking.cs
                 throw new Exception(" PXCMFaceData.RecognitionData null");
             }
             #region 註冊視窗
+            bool isRegistered = rdata.IsRegistered();//已註冊?
             int realSenseId = rdata.RegisterUser();
-            var dbItem = faceOutput.QueryRecognitionModule()
+            var collection = faceOutput.QueryRecognitionModule()
                 .GetDatabase()
-                .Where(x => x.Id == realSenseId)
-                .FirstOrDefault();
-            if (dbItem.Equals(default(RecognitionFaceData))) return;
+                .Where(x => x.ForeignKey == realSenseId);
+            var dbItem = collection.LastOrDefault();
+            if (realSenseId == -1) return;
+            if (isRegistered) {
+                //已註冊的畫面卻又重新註冊，可能是辨識錯誤的更正
+                List<RecognitionFaceData> faceData = 
+                    faceOutput.QueryRecognitionModule()
+                    .GetDatabase().ToList();
 
+                dbItem = faceData.Last();
+                dbItem.ForeignKey = dbItem.PrimaryKey + 100;//校正Id
+                faceData[faceData.Count - 1] = dbItem;
+
+                //整理資料庫的錯誤
+                FaceDatabaseFile.FormatData(faceData, NameMapping);
+                qrecognition.SetDatabase(faceData.ToArray());
+            }
+            
             var registerForm = new RegisterForm() {
                 Picture = dbItem.Image
             };
@@ -353,7 +372,7 @@ namespace DF_FaceTracking.cs
                 if(registerForm.Name.Length > 0) {
                     mapping.Name = registerForm.Name;
                 }
-                mapping.DataIds.Add(realSenseId);
+                mapping.DataIds.Add(dbItem.ForeignKey);
             }
             #endregion
         }

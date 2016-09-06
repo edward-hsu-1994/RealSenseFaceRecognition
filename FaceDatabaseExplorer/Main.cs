@@ -83,7 +83,7 @@ namespace FaceDatabaseExplorer {
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { 
             if(listBox1.SelectedIndex < 0)return;
-            var filterFaceData = FaceData.Where(x => NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.Id)).ToArray();
+            var filterFaceData = FaceData.Where(x => NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.ForeignKey)).ToArray();
             imageList1.Images.Clear();
             listView1.Items.Clear();
             imageList1.Images
@@ -93,7 +93,7 @@ namespace FaceDatabaseExplorer {
                 .Select(x=> {
                     var result = new ListViewItem();
                     result.ImageIndex = x;
-                    result.Text = filterFaceData[x].Id.ToString();
+                    result.Text = filterFaceData[x].ForeignKey.ToString();
                     return result;
                 }).ToArray());
         }
@@ -119,7 +119,7 @@ namespace FaceDatabaseExplorer {
             var item = (ListViewItem)listView1.SelectedItems[0];
             FaceData.Remove(
                 FaceData
-                .Where(x => x.Id == int.Parse(item.Text))
+                .Where(x => x.ForeignKey == int.Parse(item.Text))
                 .FirstOrDefault());
 
             FaceDatabaseFile.FormatData(FaceData, NameMapping);
@@ -135,7 +135,7 @@ namespace FaceDatabaseExplorer {
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (dialogResult != DialogResult.Yes) return;
-            FaceData = FaceData.Where(x => !NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.Id)).ToList();
+            FaceData = FaceData.Where(x => !NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.ForeignKey)).ToList();
             NameMapping.RemoveAt(listBox1.SelectedIndex);
             FaceDatabaseFile.FormatData(FaceData, NameMapping);
             LoadDatabaseUser();
@@ -165,9 +165,9 @@ namespace FaceDatabaseExplorer {
                 Directory.CreateDirectory(DirPath);
             }
 
-            FaceData.Where(x => NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.Id))
+            FaceData.Where(x => NameMapping[listBox1.SelectedIndex].DataIds.Contains(x.ForeignKey))
             .Select(x => {
-                x.Image.Save(DirPath + "\\" + x.Id + ".jpg");
+                x.Image.Save(DirPath + "\\" + x.ForeignKey + ".jpg");
                 return 0;
             }).ToArray();
         }
@@ -187,9 +187,9 @@ namespace FaceDatabaseExplorer {
                     Directory.CreateDirectory(DirPath);
                 }
 
-                FaceData.Where(x => NameMapping[i].DataIds.Contains(x.Id))
+                FaceData.Where(x => NameMapping[i].DataIds.Contains(x.ForeignKey))
                 .Select(x => {
-                    x.Image.Save(DirPath + "\\" + x.Id + ".jpg");
+                    x.Image.Save(DirPath + "\\" + x.ForeignKey + ".jpg");
                     return 0;
                 }).ToArray();
             }
@@ -207,11 +207,11 @@ namespace FaceDatabaseExplorer {
                 }
                 var faceData = new RecognitionFaceData(null) {
                     Image = image,
-                    Index = FaceData.Count,
-                    Id = 100 + FaceData.Count
+                    PrimaryKey = FaceData.Count,
+                    ForeignKey = 100 + FaceData.Count
                 };
                 FaceData.Add(faceData);
-                NameMapping[listBox1.SelectedIndex].DataIds.Add(faceData.Id);
+                NameMapping[listBox1.SelectedIndex].DataIds.Add(faceData.ForeignKey);
             }
             FaceDatabaseFile.FormatData(FaceData, NameMapping);
             listBox1_SelectedIndexChanged(null, null);
