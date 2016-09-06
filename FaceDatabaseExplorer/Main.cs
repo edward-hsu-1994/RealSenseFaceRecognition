@@ -30,13 +30,15 @@ namespace FaceDatabaseExplorer {
             #region 圖片開啟與另存檔案篩選
             openImageFileDialog1.Filter =
                 "JPEG files (*.jpg)|*.jpg|" +
-                "BMP files (*.bmp)|*.bmp";
+                "BMP files (*.bmp)|*.bmp|" +
+                "PNG files (*.png)|*.png";
             openImageFileDialog1.FileName = null;
-            openImageFileDialog1.Multiselect = false;
+            openImageFileDialog1.Multiselect = true;
 
             saveImageFileDialog1.Filter = 
                 "JPEG files (*.jpg)|*.jpg|"+
-                "BMP files (*.bmp)|*.bmp";
+                "BMP files (*.bmp)|*.bmp|" + 
+                "PNG files (*.png)|*.png";
             saveImageFileDialog1.FileName = null;
             #endregion
 
@@ -197,18 +199,20 @@ namespace FaceDatabaseExplorer {
             if (listBox1.SelectedIndex < 0) return;
             if(openImageFileDialog1.ShowDialog() != DialogResult.OK) return;
             FaceDatabaseFile.FormatData(FaceData, NameMapping);
-            var image = new Bitmap(openImageFileDialog1.FileName);
-            if(image.Size.Height != 128 || image.Size.Width != 128) {
-                MessageBox.Show("圖片尺寸必須為128*128", "圖片大小錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }                        
-            var faceData = new RecognitionFaceData(null) {
-                Image = image,
-                Index = FaceData.Count,
-                Id = 100 + FaceData.Count
-            };
-            FaceData.Add(faceData);
-            NameMapping[listBox1.SelectedIndex].DataIds.Add(faceData.Id);
+
+            foreach (var fileName in openImageFileDialog1.FileNames) {
+                var image = new Bitmap(fileName);
+                if (image.Size.Height != 128 || image.Size.Width != 128) {
+                    image = new Bitmap(image, 128, 128);
+                }
+                var faceData = new RecognitionFaceData(null) {
+                    Image = image,
+                    Index = FaceData.Count,
+                    Id = 100 + FaceData.Count
+                };
+                FaceData.Add(faceData);
+                NameMapping[listBox1.SelectedIndex].DataIds.Add(faceData.Id);
+            }
             FaceDatabaseFile.FormatData(FaceData, NameMapping);
             listBox1_SelectedIndexChanged(null, null);
         }

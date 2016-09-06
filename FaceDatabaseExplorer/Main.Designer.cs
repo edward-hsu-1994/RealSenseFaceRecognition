@@ -39,11 +39,13 @@
             this.userContextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SaveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.AddUserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.DeleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageContextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddImageToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveImageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.DeleteImageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,9 +54,7 @@
             this.saveImageFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SaveUserFolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.AddImageToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openImageFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.AddUserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -180,7 +180,7 @@
             this.toolStripSeparator3,
             this.DeleteUserToolStripMenuItem});
             this.userContextMenuStrip1.Name = "userContextMenuStrip1";
-            this.userContextMenuStrip1.Size = new System.Drawing.Size(215, 126);
+            this.userContextMenuStrip1.Size = new System.Drawing.Size(215, 104);
             // 
             // SaveUserToolStripMenuItem
             // 
@@ -193,6 +193,13 @@
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(211, 6);
+            // 
+            // AddUserToolStripMenuItem1
+            // 
+            this.AddUserToolStripMenuItem1.Name = "AddUserToolStripMenuItem1";
+            this.AddUserToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.AddUserToolStripMenuItem1.Text = "新增使用者";
+            this.AddUserToolStripMenuItem1.Click += new System.EventHandler(this.AddUserToolStripMenuItem1_Click);
             // 
             // editUserToolStripMenuItem
             // 
@@ -215,6 +222,7 @@
             // 
             // listView1
             // 
+            this.listView1.AllowDrop = true;
             this.listView1.ContextMenuStrip = this.imageContextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.LargeImageList = this.imageList1;
@@ -234,6 +242,13 @@
             this.DeleteImageMenuItem});
             this.imageContextMenuStrip1.Name = "imageContextMenuStrip1";
             this.imageContextMenuStrip1.Size = new System.Drawing.Size(123, 76);
+            // 
+            // AddImageToolStripMenuItem1
+            // 
+            this.AddImageToolStripMenuItem1.Name = "AddImageToolStripMenuItem1";
+            this.AddImageToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.AddImageToolStripMenuItem1.Text = "新增圖片";
+            this.AddImageToolStripMenuItem1.Click += new System.EventHandler(this.AddImageToolStripMenuItem1_Click);
             // 
             // SaveImageMenuItem
             // 
@@ -264,23 +279,9 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // AddImageToolStripMenuItem1
-            // 
-            this.AddImageToolStripMenuItem1.Name = "AddImageToolStripMenuItem1";
-            this.AddImageToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
-            this.AddImageToolStripMenuItem1.Text = "新增圖片";
-            this.AddImageToolStripMenuItem1.Click += new System.EventHandler(this.AddImageToolStripMenuItem1_Click);
-            // 
             // openImageFileDialog1
             // 
             this.openImageFileDialog1.FileName = "openFileDialog2";
-            // 
-            // AddUserToolStripMenuItem1
-            // 
-            this.AddUserToolStripMenuItem1.Name = "AddUserToolStripMenuItem1";
-            this.AddUserToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
-            this.AddUserToolStripMenuItem1.Text = "新增使用者";
-            this.AddUserToolStripMenuItem1.Click += new System.EventHandler(this.AddUserToolStripMenuItem1_Click);
             // 
             // Main
             // 
