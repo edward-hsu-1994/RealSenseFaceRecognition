@@ -1239,9 +1239,9 @@ namespace DF_FaceTracking.cs
 
         private void SetDefaultIvcamSettings()
         {
-            m_moduleSettings["Detection"] = new ModuleSettings { IsEnabled = true, NumberOfFaces = 4 };
-            m_moduleSettings["Landmarks"] = new ModuleSettings { IsEnabled = true, NumberOfFaces = 4 };
-            m_moduleSettings["Pose"] = new ModuleSettings { IsEnabled = true, NumberOfFaces = 4 };
+            m_moduleSettings["Detection"] = new ModuleSettings { IsEnabled = false, NumberOfFaces = 4 };
+            m_moduleSettings["Landmarks"] = new ModuleSettings { IsEnabled = false, NumberOfFaces = 4 };
+            m_moduleSettings["Pose"] = new ModuleSettings { IsEnabled = false, NumberOfFaces = 4 };
             m_moduleSettings["Recognition"] = new ModuleSettings { IsEnabled = true, NumberOfFaces = 4 };
             m_moduleSettings["Expressions"] = new ModuleSettings { IsEnabled = false, NumberOfFaces = 4 };
             m_moduleSettings["Pulse"] = new ModuleSettings { IsEnabled = false, NumberOfFaces = 4 };

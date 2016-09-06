@@ -47,7 +47,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Register";
+            this.button1.Text = "註冊";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -65,9 +65,9 @@
             this.label1.Font = new System.Drawing.Font("新細明體", 12F);
             this.label1.Location = new System.Drawing.Point(146, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 16);
+            this.label1.Size = new System.Drawing.Size(36, 16);
             this.label1.TabIndex = 3;
-            this.label1.Text = "ID:";
+            this.label1.Text = "ID*:";
             // 
             // label2
             // 
@@ -94,7 +94,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(285, 16);
             this.label3.TabIndex = 6;
-            this.label3.Text = "使用者採用ID作為區分，Name可相同。";
+            this.label3.Text = "使用者採用ID作為區分，Name非必要。";
             // 
             // RegisterForm
             // 
@@ -111,7 +111,7 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "RegisterForm";
-            this.Text = "Register User";
+            this.Text = "註冊使用者";
             this.Load += new System.EventHandler(this.RegisterForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
