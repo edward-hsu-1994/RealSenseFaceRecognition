@@ -38,7 +38,7 @@
             this.ModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ColorPlusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.說明HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.關於AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -57,18 +57,18 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.UserListBox = new System.Windows.Forms.ListBox();
+            this.userListContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserFaceListView = new System.Windows.Forms.ListView();
+            this.userImageContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FaceImageList = new System.Windows.Forms.ImageList(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.userListContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userImageContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.AddImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormMenuBar.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -86,10 +86,10 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.userListContextMenuStrip.SuspendLayout();
             this.userImageContextMenuStrip.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // FormMenuBar
@@ -123,7 +123,7 @@
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.OpenFileToolStripMenuItem.Text = "開啟舊檔(&O)";
             this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
@@ -131,38 +131,38 @@
             // 
             this.SaveFileToolStripMenuItem.Enabled = false;
             this.SaveFileToolStripMenuItem.Name = "SaveFileToolStripMenuItem";
-            this.SaveFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.SaveFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.SaveFileToolStripMenuItem.Text = "儲存(&S)";
             this.SaveFileToolStripMenuItem.Click += new System.EventHandler(this.SaveFileToolStripMenuItem_Click);
             // 
             // SaveOtherFileToolStripMenuItem
             // 
             this.SaveOtherFileToolStripMenuItem.Name = "SaveOtherFileToolStripMenuItem";
-            this.SaveOtherFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.SaveOtherFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.SaveOtherFileToolStripMenuItem.Text = "另存新檔(&N)";
             this.SaveOtherFileToolStripMenuItem.Click += new System.EventHandler(this.SaveOtherFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
             // 
             // ExportToolStripMenuItem
             // 
             this.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem";
-            this.ExportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExportToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.ExportToolStripMenuItem.Text = "匯出(&E)";
             this.ExportToolStripMenuItem.Click += new System.EventHandler(this.ExportToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(137, 6);
             // 
             // EndToolStripMenuItem
             // 
             this.EndToolStripMenuItem.Name = "EndToolStripMenuItem";
-            this.EndToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.EndToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.EndToolStripMenuItem.Text = "結束(&X)";
             this.EndToolStripMenuItem.Click += new System.EventHandler(this.EndToolStripMenuItem_Click);
             // 
@@ -183,7 +183,7 @@
             this.ModeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ColorPlusToolStripMenuItem,
             this.IRToolStripMenuItem,
-            this.ColorToolStripMenuItem1});
+            this.ColorToolStripMenuItem});
             this.ModeToolStripMenuItem.Name = "ModeToolStripMenuItem";
             this.ModeToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.ModeToolStripMenuItem.Text = "模式(&M)";
@@ -193,20 +193,23 @@
             this.ColorPlusToolStripMenuItem.Checked = true;
             this.ColorPlusToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ColorPlusToolStripMenuItem.Name = "ColorPlusToolStripMenuItem";
-            this.ColorPlusToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.ColorPlusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ColorPlusToolStripMenuItem.Text = "3D 追蹤";
+            this.ColorPlusToolStripMenuItem.Click += new System.EventHandler(this.ModeChange);
             // 
             // IRToolStripMenuItem
             // 
             this.IRToolStripMenuItem.Name = "IRToolStripMenuItem";
-            this.IRToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.IRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.IRToolStripMenuItem.Text = "紅外線追蹤";
+            this.IRToolStripMenuItem.Click += new System.EventHandler(this.ModeChange);
             // 
-            // ColorToolStripMenuItem1
+            // ColorToolStripMenuItem
             // 
-            this.ColorToolStripMenuItem1.Name = "ColorToolStripMenuItem1";
-            this.ColorToolStripMenuItem1.Size = new System.Drawing.Size(134, 22);
-            this.ColorToolStripMenuItem1.Text = "2D 追蹤";
+            this.ColorToolStripMenuItem.Name = "ColorToolStripMenuItem";
+            this.ColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ColorToolStripMenuItem.Text = "2D 追蹤";
+            this.ColorToolStripMenuItem.Click += new System.EventHandler(this.ModeChange);
             // 
             // 說明HToolStripMenuItem
             // 
@@ -426,6 +429,36 @@
             this.UserListBox.TabIndex = 0;
             this.UserListBox.SelectedIndexChanged += new System.EventHandler(this.UserListBox_SelectedIndexChanged);
             // 
+            // userListContextMenuStrip
+            // 
+            this.userListContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EditUserToolStripMenuItem,
+            this.AddUserToolStripMenuItem,
+            this.DeleteUserToolStripMenuItem});
+            this.userListContextMenuStrip.Name = "userListContextMenuStrip";
+            this.userListContextMenuStrip.Size = new System.Drawing.Size(135, 70);
+            // 
+            // EditUserToolStripMenuItem
+            // 
+            this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
+            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.EditUserToolStripMenuItem.Text = "變更名稱";
+            this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
+            // 
+            // AddUserToolStripMenuItem
+            // 
+            this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.AddUserToolStripMenuItem.Text = "新增使用者";
+            this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
+            // 
+            // DeleteUserToolStripMenuItem
+            // 
+            this.DeleteUserToolStripMenuItem.Name = "DeleteUserToolStripMenuItem";
+            this.DeleteUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.DeleteUserToolStripMenuItem.Text = "刪除使用者";
+            this.DeleteUserToolStripMenuItem.Click += new System.EventHandler(this.DeleteUserToolStripMenuItem_Click);
+            // 
             // UserFaceListView
             // 
             this.UserFaceListView.ContextMenuStrip = this.userImageContextMenuStrip;
@@ -436,6 +469,28 @@
             this.UserFaceListView.Size = new System.Drawing.Size(756, 510);
             this.UserFaceListView.TabIndex = 0;
             this.UserFaceListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // userImageContextMenuStrip
+            // 
+            this.userImageContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddImageToolStripMenuItem,
+            this.DeleteImageToolStripMenuItem});
+            this.userImageContextMenuStrip.Name = "userImageContextMenuStrip";
+            this.userImageContextMenuStrip.Size = new System.Drawing.Size(123, 48);
+            // 
+            // AddImageToolStripMenuItem
+            // 
+            this.AddImageToolStripMenuItem.Name = "AddImageToolStripMenuItem";
+            this.AddImageToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.AddImageToolStripMenuItem.Text = "新增圖片";
+            this.AddImageToolStripMenuItem.Click += new System.EventHandler(this.AddImageToolStripMenuItem_Click);
+            // 
+            // DeleteImageToolStripMenuItem
+            // 
+            this.DeleteImageToolStripMenuItem.Name = "DeleteImageToolStripMenuItem";
+            this.DeleteImageToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.DeleteImageToolStripMenuItem.Text = "刪除圖片";
+            this.DeleteImageToolStripMenuItem.Click += new System.EventHandler(this.DeleteImageToolStripMenuItem_Click);
             // 
             // FaceImageList
             // 
@@ -468,58 +523,6 @@
             this.panel1.Size = new System.Drawing.Size(930, 542);
             this.panel1.TabIndex = 4;
             // 
-            // userListContextMenuStrip
-            // 
-            this.userListContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EditUserToolStripMenuItem,
-            this.AddUserToolStripMenuItem,
-            this.DeleteUserToolStripMenuItem});
-            this.userListContextMenuStrip.Name = "userListContextMenuStrip";
-            this.userListContextMenuStrip.Size = new System.Drawing.Size(135, 70);
-            // 
-            // AddUserToolStripMenuItem
-            // 
-            this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
-            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
-            this.AddUserToolStripMenuItem.Text = "新增使用者";
-            this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
-            // 
-            // DeleteUserToolStripMenuItem
-            // 
-            this.DeleteUserToolStripMenuItem.Name = "DeleteUserToolStripMenuItem";
-            this.DeleteUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
-            this.DeleteUserToolStripMenuItem.Text = "刪除使用者";
-            this.DeleteUserToolStripMenuItem.Click += new System.EventHandler(this.DeleteUserToolStripMenuItem_Click);
-            // 
-            // EditUserToolStripMenuItem
-            // 
-            this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
-            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
-            this.EditUserToolStripMenuItem.Text = "變更名稱";
-            this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
-            // 
-            // userImageContextMenuStrip
-            // 
-            this.userImageContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddImageToolStripMenuItem,
-            this.DeleteImageToolStripMenuItem});
-            this.userImageContextMenuStrip.Name = "userImageContextMenuStrip";
-            this.userImageContextMenuStrip.Size = new System.Drawing.Size(123, 48);
-            // 
-            // AddImageToolStripMenuItem
-            // 
-            this.AddImageToolStripMenuItem.Name = "AddImageToolStripMenuItem";
-            this.AddImageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.AddImageToolStripMenuItem.Text = "新增圖片";
-            this.AddImageToolStripMenuItem.Click += new System.EventHandler(this.AddImageToolStripMenuItem_Click);
-            // 
-            // DeleteImageToolStripMenuItem
-            // 
-            this.DeleteImageToolStripMenuItem.Name = "DeleteImageToolStripMenuItem";
-            this.DeleteImageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.DeleteImageToolStripMenuItem.Text = "刪除圖片";
-            this.DeleteImageToolStripMenuItem.Click += new System.EventHandler(this.DeleteImageToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -551,11 +554,11 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.userListContextMenuStrip.ResumeLayout(false);
+            this.userImageContextMenuStrip.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.userListContextMenuStrip.ResumeLayout(false);
-            this.userImageContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -591,7 +594,7 @@
         private System.Windows.Forms.ToolStripMenuItem ModeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ColorPlusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem IRToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ColorToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ColorToolStripMenuItem;
         private System.Windows.Forms.ImageList FaceImageList;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;

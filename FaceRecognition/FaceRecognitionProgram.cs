@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,11 +16,11 @@ namespace FaceRecognition {
         /// 主視窗
         /// </summary>
         public MainForm Form { get; private set; }
-        
-        public byte[] Buffer { get; set; }
+
+        /*public byte[] Buffer { get; set; }*/
 
         public delegate void FaceRecognitionEventHandler(object sender, FaceRecognitionEventArgs args);
-        
+
         public event FaceRecognitionEventHandler OnStart;
         public event FaceRecognitionEventHandler OnStop;
         public event FaceRecognitionEventHandler OnFoundFace;
@@ -41,7 +43,7 @@ namespace FaceRecognition {
         public void Start() {
             _Stop = false;
             _Token = new CancellationTokenSource();
-            _Task = Task.Run(()=> {
+            _Task = Task.Run(() => {
                 try {
                     FaceTrackingPipeline();
                 } catch { }
@@ -59,9 +61,9 @@ namespace FaceRecognition {
             _Paush = false;
         }
         #endregion
-        
+
         private void FaceTrackingPipeline() {
-            OnStart?.Invoke(this,null);
+            OnStart?.Invoke(this, null);
 
             #region Manager Init
             realSenseManager = RealSenseObjects.Session.CreateSenseManager();
@@ -94,7 +96,7 @@ namespace FaceRecognition {
 
             //設定串流類型
             captureManager.FilterByStreamProfiles(Form.SelectedDeviceStreamProfile);
-            
+
 
             //啟用臉部追蹤模組
             realSenseManager.EnableFace();
@@ -159,7 +161,7 @@ namespace FaceRecognition {
             Form.SetStatus("RealSenseManager初始化中");
             if (applyChangesStatus.IsError() || realSenseManager.Init().IsError()) {
                 MessageBox.Show(
-                    "RealSenseManager初始化失敗。",
+                    "RealSenseManager初始化失敗，請檢查設定正確。",
                     "初始化失敗",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -167,7 +169,7 @@ namespace FaceRecognition {
                 return;
             }
             #endregion
-            
+
             using (moduleOutput = faceModule.CreateOutput()) {
                 PXCMCapture.Device.StreamProfileSet profiles;
                 PXCMCapture.Device device = captureManager.QueryDevice();
@@ -199,7 +201,7 @@ namespace FaceRecognition {
                         }
                         #region 畫面取出
                         PXCMImage image = null;
-                        if(Form.ModeType == PXCMFaceConfiguration.TrackingModeType.FACE_MODE_IR) {
+                        if (Form.ModeType == PXCMFaceConfiguration.TrackingModeType.FACE_MODE_IR) {
                             image = sample.ir;
                         } else {
                             image = sample.color;
@@ -226,11 +228,11 @@ namespace FaceRecognition {
                 #endregion
 
                 //更新資料庫緩衝區
-                Buffer = moduleOutput.QueryRecognitionModule().GetDatabaseBuffer();
+                //Buffer = moduleOutput.QueryRecognitionModule().GetDatabaseBuffer();
             }
 
             #region 釋放資源
-            moduleConfiguration.Dispose();
+            moduleConfiguration.Dispose();            
             realSenseManager.Close();
             realSenseManager.Dispose();
             #endregion

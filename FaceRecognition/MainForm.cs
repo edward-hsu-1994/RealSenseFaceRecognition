@@ -220,15 +220,25 @@ namespace FaceRecognition {
                         SelectedDeviceStreamProfile = DeviceStreamProfiles[index][index2];
                     };
 
-                    if (x.color.imageInfo.format == PXCMImage.PixelFormat.PIXEL_FORMAT_RGB24 &&
-                        x.color.imageInfo.height == 540 &&
-                        x.color.imageInfo.width == 960 &&
-                        x.color.frameRate.max == 30) {
+                    if (i == 1) {
                         item.Checked = true;
                     }
                     return item;
                 }).ToArray()
             );
+        }
+
+        /// <summary>
+        /// 追蹤模式變更事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ModeChange(object sender, EventArgs e) {
+            var typedSender = (ToolStripMenuItem)sender;
+            foreach (var item in ModeToolStripMenuItem.DropDownItems) {
+                ((ToolStripMenuItem)item).Checked = false;
+            }
+            typedSender.Checked = true;
         }
         #endregion
 
@@ -382,6 +392,7 @@ namespace FaceRecognition {
             };
 
             if (registerForm.ShowDialog() != DialogResult.OK) {
+                realSenseProgram.UnPaush();
                 return;
             }
 
