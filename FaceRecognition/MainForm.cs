@@ -36,8 +36,10 @@ namespace FaceRecognition {
                     return PXCMFaceConfiguration.TrackingModeType.FACE_MODE_COLOR_PLUS_DEPTH;
                 } else if (IRToolStripMenuItem.Checked) {
                     return PXCMFaceConfiguration.TrackingModeType.FACE_MODE_IR;
-                } else {
+                } else if(ColorToolStripMenuItem.Checked){
                     return PXCMFaceConfiguration.TrackingModeType.FACE_MODE_COLOR;
+                } else {
+                    return PXCMFaceConfiguration.TrackingModeType.FACE_MODE_COLOR_STILL;
                 }
             }
         }
@@ -481,7 +483,7 @@ namespace FaceRecognition {
                 $"本操作將清除該使用者({user} - {UserTable[user]})的所有臉部資料，您確定要進行此操作?",
                 "解除註冊確認",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) != DialogResult.OK) {
+                MessageBoxIcon.Question) != DialogResult.Yes) {
                 realSenseProgram.UnPaush();
                 return;
             }

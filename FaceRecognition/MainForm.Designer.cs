@@ -69,6 +69,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ColorSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormMenuBar.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -183,7 +184,8 @@
             this.ModeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ColorPlusToolStripMenuItem,
             this.IRToolStripMenuItem,
-            this.ColorToolStripMenuItem});
+            this.ColorToolStripMenuItem,
+            this.ColorSToolStripMenuItem});
             this.ModeToolStripMenuItem.Name = "ModeToolStripMenuItem";
             this.ModeToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.ModeToolStripMenuItem.Text = "模式(&M)";
@@ -215,6 +217,7 @@
             // 
             this.說明HToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.關於AToolStripMenuItem});
+            this.說明HToolStripMenuItem.Enabled = false;
             this.說明HToolStripMenuItem.Name = "說明HToolStripMenuItem";
             this.說明HToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.說明HToolStripMenuItem.Text = "說明(&H)";
@@ -523,6 +526,13 @@
             this.panel1.Size = new System.Drawing.Size(930, 542);
             this.panel1.TabIndex = 4;
             // 
+            // ColorSToolStripMenuItem
+            // 
+            this.ColorSToolStripMenuItem.Name = "ColorSToolStripMenuItem";
+            this.ColorSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ColorSToolStripMenuItem.Text = "2D 靜態";
+            this.ColorSToolStripMenuItem.Click += new System.EventHandler(this.ModeChange);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -610,6 +620,7 @@
         private System.Windows.Forms.ContextMenuStrip userImageContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem AddImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ColorSToolStripMenuItem;
     }
 }
 
