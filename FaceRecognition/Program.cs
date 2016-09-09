@@ -27,7 +27,13 @@ namespace FaceRecognition {
             }
             #endregion
 
-            Application.Run(new MainForm());
+            MainForm form = new MainForm();
+            Application.Run(form);
+            if (!form.IsDisposed) {//尚未釋放資源就關閉
+                form.realSenseProgram.moduleConfiguration.Dispose();
+                form.realSenseProgram.realSenseManager.Close();
+                form.realSenseProgram.realSenseManager.Dispose();
+            }
             RealSenseObjects.Session.Dispose();//釋放資源
         }
     }

@@ -17,9 +17,16 @@ namespace FaceRecognition {
         /// </summary>
         public MainForm Form { get; private set; }
 
+        /// <summary>
+        /// 資源是否已經釋放
+        /// </summary>
+        public bool IsDispose { get; private set; }
+
         /*public byte[] Buffer { get; set; }*/
 
         public delegate void FaceRecognitionEventHandler(object sender, FaceRecognitionEventArgs args);
+
+
 
         public event FaceRecognitionEventHandler OnStart;
         public event FaceRecognitionEventHandler OnStop;
@@ -31,7 +38,7 @@ namespace FaceRecognition {
 
         public PXCMFaceConfiguration.RecognitionConfiguration recognitionConfig;
         public PXCMFaceConfiguration moduleConfiguration;
-        private PXCMSenseManager realSenseManager;
+        public PXCMSenseManager realSenseManager;
         private PXCMFaceData moduleOutput;
         private bool _Stop = false;
         private bool _Paush = false;
@@ -60,9 +67,11 @@ namespace FaceRecognition {
         public void UnPaush() {
             _Paush = false;
         }
+
         #endregion
 
         private void FaceTrackingPipeline() {
+            IsDispose = false;
             OnStart?.Invoke(this, null);
 
             #region Manager Init
@@ -237,6 +246,7 @@ namespace FaceRecognition {
             realSenseManager.Dispose();
             #endregion
 
+            IsDispose = true;
             OnStop?.Invoke(this, null);
         }
 

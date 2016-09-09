@@ -57,10 +57,8 @@ namespace FaceRecognition {
         /// 臉部資訊資料庫
         /// </summary>
         public RecognitionFaceData[] FaceData { get; set; } = new RecognitionFaceData[0];
-
-
-
-        private FaceRecognitionProgram realSenseProgram;
+                
+        public FaceRecognitionProgram realSenseProgram { get; set; }
         public MainForm() {
             InitializeComponent();
             realSenseProgram = new FaceRecognitionProgram(this);
