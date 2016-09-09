@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealSenseFaceRecognitionMod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceDatabaseExplorer", "FaceDatabaseExplorer\FaceDatabaseExplorer.csproj", "{37BEC6E7-16E5-4A08-8D65-B6BDCB632026}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognition", "..\FaceRecognition\FaceRecognition.csproj", "{0D74C293-81D0-4619-AFD0-41AE50CDE40E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceRecognition", "FaceRecognition\FaceRecognition.csproj", "{0D74C293-81D0-4619-AFD0-41AE50CDE40E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
