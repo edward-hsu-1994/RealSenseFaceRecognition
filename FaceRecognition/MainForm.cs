@@ -68,14 +68,20 @@ namespace FaceRecognition {
             realSenseProgram.OnStop += RealSenseProgram_OnStop;
             realSenseProgram.OnFoundFace += RealSenseProgram_OnFoundFace;
             realSenseProgram.OnNotFoundFace += RealSenseProgram_OnNotFoundFace;
+            realSenseProgram.OnFrame += RealSenseProgram_OnFrame;
+        }
+
+        private void RealSenseProgram_OnFrame(object sender, FaceRecognitionEventArgs args) {
+            Image = args.Image;
         }
 
         private void RealSenseProgram_OnNotFoundFace(object sender, FaceRecognitionEventArgs args) {
             label1.Text = "無使用者";
-            FacePicturebox.Image = null;
+            FaceImage = null;
             registerButton.Enabled = false;
             unregisterButton.Enabled = false;
             DrawInformation(args.Output);
+            DrawBitmap();
         }
         private bool CurentDataLocked;
         public PXCMFaceData.RecognitionData Current { get; private set; }
@@ -104,6 +110,7 @@ namespace FaceRecognition {
                     CurrentData = args.Output;
                 }
             } catch { }
+            DrawBitmap();
         }
 
         private void RealSenseProgram_OnStop(object sender, FaceRecognitionEventArgs e) {
@@ -390,7 +397,7 @@ namespace FaceRecognition {
             var onClickName = CurrentName;
             var registerForm = new RegisterForm() {
                 UserName = onClickName,
-                Picture = FacePicturebox.Image
+                Picture = FaceImage
             };
 
             if (registerForm.ShowDialog() != DialogResult.OK) {
@@ -502,14 +509,15 @@ namespace FaceRecognition {
         }
 
         public Bitmap Image;
+        public Bitmap FaceImage;
         private object PicLock = new object();
         private delegate void UpdatePanelDelegate();
-        public void DrawBitmap(Bitmap image) {
-            if (Image != null) Image.Dispose();
-            Image = image;
-            pictureBox1.Invoke(//重新繪製
+        public void DrawBitmap() {
+            this.Invoke(//重新繪製
                 new UpdatePanelDelegate(() => {
                     pictureBox1.Invalidate();
+                    FacePicturebox.Invalidate();
+                    Application.DoEvents();//處理其餘UI事件
                 }));
         }
         /// <summary>
@@ -524,6 +532,15 @@ namespace FaceRecognition {
             }
         }
 
+        private void FacePicturebox_Paint(object sender, PaintEventArgs e) {
+            lock (PicLock) {
+                if (FaceImage == null) {
+                    e.Graphics.Clear(Color.Black);//清空
+                    return;
+                }
+                e.Graphics.DrawImage(FaceImage, 0, 0, FacePicturebox.Width, FacePicturebox.Height);
+            }
+        }
         /// <summary>
         /// 取得臉部圖片並且匯出
         /// </summary>
@@ -543,27 +560,53 @@ namespace FaceRecognition {
                 detection.QueryBoundingRect(out range);
                 #endregion
 
-                //繪製使用者方框
-                lock (PicLock)
-                using (var g = pictureBox1.CreateGraphics()) {
-                    
-                }
-
                 #region 僅顯示FaceId為0者獨立照片
                 if (i == 0) {
-                    Bitmap faceImage = new Bitmap(128, 128);
                     lock (PicLock) {
-                        using (Graphics g = Graphics.FromImage(faceImage)) {
+                        FaceImage = new Bitmap(128, 128);
+                        using (Graphics g = Graphics.FromImage(FaceImage)) {
                             g.DrawImage(Image,
                                 new Rectangle(0, 0, 128, 128),
                                 new Rectangle(range.x, range.y, range.w, range.h)
                                 , GraphicsUnit.Pixel);
                         }
                     }
-                    this.Invoke(new UpdatePanelDelegate(() => {
-                        FacePicturebox.Image = faceImage;
-                    }));
                 }
+                
+                //繪製使用者方框
+                lock (PicLock)
+                    using (var g = Graphics.FromImage(Image)) {
+                        Pen pan = i == 0?
+                            (Pen)Pens.Red.Clone():
+                            (Pen)Pens.Yellow.Clone();
+                        Brush brush = i == 0 ?
+                            Brushes.Red:
+                            Brushes.Yellow;
+                        pan.Width = 4;
+                        g.DrawRectangle(
+                            pan,
+                            new Rectangle(
+                                range.x, range.y,
+                                range.w, range.h
+                                ));
+                        
+                        var userId = face.QueryRecognition().QueryUserID();
+                        var text = userId == -1 ? "未註冊使用者" : UserTable[userId];
+
+                        var size = g.MeasureString(//取得大小
+                           "#" + i + " " + text,
+                            new Font("Arial", 14));
+                        g.FillRectangle(
+                            brush,
+                            new Rectangle(
+                                range.x, range.y,
+                                (int)size.Width, 20
+                                ));
+                        g.DrawString(
+                           "#" + i + " " + text,
+                            new Font("Arial", 14),
+                            Brushes.Black, range.x, range.y);
+                    }
                 #endregion
             }
         }
@@ -821,5 +864,7 @@ namespace FaceRecognition {
             UserListBox_SelectedIndexChanged(null, null);
         }
         #endregion
+
+
     }
 }

@@ -39,6 +39,7 @@
             this.ColorPlusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ColorSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.說明HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.關於AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -69,7 +70,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ColorSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormMenuBar.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -195,23 +195,30 @@
             this.ColorPlusToolStripMenuItem.Checked = true;
             this.ColorPlusToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ColorPlusToolStripMenuItem.Name = "ColorPlusToolStripMenuItem";
-            this.ColorPlusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ColorPlusToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.ColorPlusToolStripMenuItem.Text = "3D 追蹤";
             this.ColorPlusToolStripMenuItem.Click += new System.EventHandler(this.ModeChange);
             // 
             // IRToolStripMenuItem
             // 
             this.IRToolStripMenuItem.Name = "IRToolStripMenuItem";
-            this.IRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.IRToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.IRToolStripMenuItem.Text = "紅外線追蹤";
             this.IRToolStripMenuItem.Click += new System.EventHandler(this.ModeChange);
             // 
             // ColorToolStripMenuItem
             // 
             this.ColorToolStripMenuItem.Name = "ColorToolStripMenuItem";
-            this.ColorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ColorToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.ColorToolStripMenuItem.Text = "2D 追蹤";
             this.ColorToolStripMenuItem.Click += new System.EventHandler(this.ModeChange);
+            // 
+            // ColorSToolStripMenuItem
+            // 
+            this.ColorSToolStripMenuItem.Name = "ColorSToolStripMenuItem";
+            this.ColorSToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.ColorSToolStripMenuItem.Text = "2D 靜態";
+            this.ColorSToolStripMenuItem.Click += new System.EventHandler(this.ModeChange);
             // 
             // 說明HToolStripMenuItem
             // 
@@ -323,6 +330,7 @@
             this.FacePicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.FacePicturebox.TabIndex = 0;
             this.FacePicturebox.TabStop = false;
+            this.FacePicturebox.Paint += new System.Windows.Forms.PaintEventHandler(this.FacePicturebox_Paint);
             // 
             // tableLayoutPanel1
             // 
@@ -525,13 +533,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(930, 542);
             this.panel1.TabIndex = 4;
-            // 
-            // ColorSToolStripMenuItem
-            // 
-            this.ColorSToolStripMenuItem.Name = "ColorSToolStripMenuItem";
-            this.ColorSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.ColorSToolStripMenuItem.Text = "2D 靜態";
-            this.ColorSToolStripMenuItem.Click += new System.EventHandler(this.ModeChange);
             // 
             // MainForm
             // 

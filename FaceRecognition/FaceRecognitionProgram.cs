@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -30,6 +31,7 @@ namespace FaceRecognition {
 
         public event FaceRecognitionEventHandler OnStart;
         public event FaceRecognitionEventHandler OnStop;
+        public event FaceRecognitionEventHandler OnFrame;
         public event FaceRecognitionEventHandler OnFoundFace;
         public event FaceRecognitionEventHandler OnNotFoundFace;
         public FaceRecognitionProgram(MainForm form) {
@@ -136,6 +138,7 @@ namespace FaceRecognition {
 
             moduleConfiguration.strategy = PXCMFaceConfiguration.TrackingStrategyType.STRATEGY_RIGHT_TO_LEFT;
             moduleConfiguration.detection.isEnabled = true;
+            moduleConfiguration.detection.maxTrackedFaces = 4;//最大追蹤4個臉
             moduleConfiguration.landmarks.isEnabled = false;
             moduleConfiguration.pose.isEnabled = false;
 
@@ -224,9 +227,11 @@ namespace FaceRecognition {
                             continue;
                         }
 
-                        
+
                         #region 繪圖與事件
-                        DisplayPicture(image);
+                        OnFrame?.Invoke(this, new FaceRecognitionEventArgs() {
+                            Image = ToBitmap(image)
+                        });
                         FindFace(moduleOutput);
                         #endregion
                     }
@@ -269,12 +274,13 @@ namespace FaceRecognition {
             }));
         }
 
-        private void DisplayPicture(PXCMImage image) {
+        private Bitmap ToBitmap(PXCMImage image) {
             PXCMImage.ImageData data;
             if (image.AcquireAccess(PXCMImage.Access.ACCESS_READ_WRITE, PXCMImage.PixelFormat.PIXEL_FORMAT_RGB32, out data) <
-                pxcmStatus.PXCM_STATUS_NO_ERROR) return;
-            Form.DrawBitmap(data.ToBitmap(0, image.info.width, image.info.height));
+                pxcmStatus.PXCM_STATUS_NO_ERROR) return null;
+            var result = data.ToBitmap(0, image.info.width, image.info.height);
             image.ReleaseAccess(data);
+            return result;
         }
     }
 }
