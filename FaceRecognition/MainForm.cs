@@ -92,7 +92,7 @@ namespace FaceRecognition {
                     string name;
                     UserTable.TryGetValue(UserId, out name);
                     CurrentName = name;
-                    label1.Text = "已註冊使用者: " + name;
+                    label1.Text = name;
                     registerButton.Enabled = true;
                     unregisterButton.Enabled = true;
                 }
@@ -536,19 +536,24 @@ namespace FaceRecognition {
 
                 PXCMRectI32 range;
                 detection.QueryBoundingRect(out range);
-                Bitmap faceImage = new Bitmap(128, 128);
 
-                lock (PicLock) {
-                    using (Graphics g = Graphics.FromImage(faceImage)) {
-                        g.DrawImage(Image,
-                            new Rectangle(0, 0, 128, 128),
-                            new Rectangle(range.x, range.y, range.w, range.h)
-                            , GraphicsUnit.Pixel);
+
+                #region 僅顯示FaceId為0者獨立照片
+                if (i == 0) {
+                    Bitmap faceImage = new Bitmap(128, 128);
+                    lock (PicLock) {
+                        using (Graphics g = Graphics.FromImage(faceImage)) {
+                            g.DrawImage(Image,
+                                new Rectangle(0, 0, 128, 128),
+                                new Rectangle(range.x, range.y, range.w, range.h)
+                                , GraphicsUnit.Pixel);
+                        }
                     }
+                    this.Invoke(new UpdatePanelDelegate(() => {
+                        FacePicturebox.Image = faceImage;
+                    }));
                 }
-                this.Invoke(new UpdatePanelDelegate(() => {
-                    FacePicturebox.Image = faceImage;
-                }));
+                #endregion
             }
         }
 
