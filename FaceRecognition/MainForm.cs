@@ -36,7 +36,7 @@ namespace FaceRecognition {
                     return PXCMFaceConfiguration.TrackingModeType.FACE_MODE_COLOR_PLUS_DEPTH;
                 } else if (IRToolStripMenuItem.Checked) {
                     return PXCMFaceConfiguration.TrackingModeType.FACE_MODE_IR;
-                } else if(ColorToolStripMenuItem.Checked){
+                } else if (ColorToolStripMenuItem.Checked) {
                     return PXCMFaceConfiguration.TrackingModeType.FACE_MODE_COLOR;
                 } else {
                     return PXCMFaceConfiguration.TrackingModeType.FACE_MODE_COLOR_STILL;
@@ -59,7 +59,7 @@ namespace FaceRecognition {
         /// 臉部資訊資料庫
         /// </summary>
         public RecognitionFaceData[] FaceData { get; set; } = new RecognitionFaceData[0];
-                
+
         public FaceRecognitionProgram realSenseProgram { get; set; }
         public MainForm() {
             InitializeComponent();
@@ -75,12 +75,14 @@ namespace FaceRecognition {
             FacePicturebox.Image = null;
             registerButton.Enabled = false;
             unregisterButton.Enabled = false;
+            DrawInformation(args.Output);
         }
         private bool CurentDataLocked;
         public PXCMFaceData.RecognitionData Current { get; private set; }
         public PXCMFaceData CurrentData { get; private set; }
         public string CurrentName { get; private set; }
         private void RealSenseProgram_OnFoundFace(object sender, FaceRecognitionEventArgs args) {
+            DrawInformation(args.Output);
             try {
                 int UserId = args.Faces[0].QueryRecognition().QueryUserID();
                 if (UserId == -1) {
@@ -408,7 +410,7 @@ namespace FaceRecognition {
                         x.ForeignKey == userIds[i]).FirstOrDefault()?.Image;
                     if (mapping[userIds[i]] == null) {
                         mapping[userIds[i]] = new Bitmap(128, 128);
-                        using(Graphics g = Graphics.FromImage(mapping[userIds[i]])) {
+                        using (Graphics g = Graphics.FromImage(mapping[userIds[i]])) {
                             g.DrawString("找不到圖片", new Font("Arial", 16), Brushes.Black, 0, 0);
                         }
                     }
@@ -479,7 +481,7 @@ namespace FaceRecognition {
 
             realSenseProgram.Paush();
 
-            if(MessageBox.Show(
+            if (MessageBox.Show(
                 $"本操作將清除該使用者({user} - {UserTable[user]})的所有臉部資料，您確定要進行此操作?",
                 "解除註冊確認",
                 MessageBoxButtons.YesNo,
@@ -491,7 +493,7 @@ namespace FaceRecognition {
             Current.UnregisterUser();
             FaceData = CurrentData.QueryRecognitionModule()
                 .GetDatabase();
-            
+
             /*if (FaceData.Where(x => x.ForeignKey == user).Count() == 0) {
                 UserTable.Remove(user);
             }*/
@@ -531,12 +533,21 @@ namespace FaceRecognition {
                 PXCMFaceData.Face face = moduleOutput.QueryFaceByIndex(i);
                 if (face == null) continue;
 
+                #region 臉部追蹤資訊取得
+                //取得臉部定位資訊
                 PXCMFaceData.DetectionData detection = face.QueryDetection();
                 if (detection == null) continue;
 
+                //取得臉部範圍
                 PXCMRectI32 range;
                 detection.QueryBoundingRect(out range);
+                #endregion
 
+                //繪製使用者方框
+                lock (PicLock)
+                using (var g = pictureBox1.CreateGraphics()) {
+                    
+                }
 
                 #region 僅顯示FaceId為0者獨立照片
                 if (i == 0) {
@@ -642,7 +653,7 @@ namespace FaceRecognition {
             if (UserTable.Count != 0) {
                 if (MessageBox.Show(
                     "您確定要開啟檔案嗎?目前尚未儲存的結果將會遺失。",
-                    "開啟舊檔", 
+                    "開啟舊檔",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question
                     ) != DialogResult.OK) return;
@@ -681,7 +692,7 @@ namespace FaceRecognition {
             FilePath = save.FileName;
             FaceDatabaseFile.Save(FilePath, FaceData, UserTable);
             SaveFileToolStripMenuItem.Enabled = true;
-        }        
+        }
         private void ExportToolStripMenuItem_Click(object sender, EventArgs e) {
             var folder = new FolderBrowserDialog();
             if (folder.ShowDialog() != DialogResult.OK) return;
@@ -690,7 +701,7 @@ namespace FaceRecognition {
 
             var path = folder.SelectedPath + $"\\Database-{DateTime.UtcNow.ToString("yyyyMMdd_HHmmss")}";
             Directory.CreateDirectory(path);
-            byte[] userTable  =FaceDatabaseFile.UserTableToCSVBinary(UserTable);
+            byte[] userTable = FaceDatabaseFile.UserTableToCSVBinary(UserTable);
 
             FileStream userTableFile = new FileStream(path + "\\UserTable.csv", FileMode.Create);
             BinaryWriter userTableFileWriter = new BinaryWriter(userTableFile);
@@ -698,18 +709,18 @@ namespace FaceRecognition {
             userTableFileWriter.Flush();
             userTableFileWriter.Close();
             userTableFile.Close();
-            
-            foreach(var user in UserTable.Keys) {
+
+            foreach (var user in UserTable.Keys) {
                 var path2 = path + "\\" + user;
                 Directory.CreateDirectory(path2);
                 var userFaces = FaceData.Where(x => x.ForeignKey == user);
-                foreach(var face in userFaces) {
+                foreach (var face in userFaces) {
                     face.Image.Save(path2 + "\\" + face.PrimaryKey + ".jpg");
                 }
             }
             MessageBox.Show(
                 "資料庫已成功匯出至指定目錄",
-                "匯出成功", 
+                "匯出成功",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
             //realSenseProgram.UnPaush();
@@ -737,7 +748,7 @@ namespace FaceRecognition {
         }
 
         private void AddUserToolStripMenuItem_Click(object sender, EventArgs e) {
-            string NewUser = Interaction.InputBox("請輸入新使用者名稱", "新增使用者","新使用者");
+            string NewUser = Interaction.InputBox("請輸入新使用者名稱", "新增使用者", "新使用者");
             int NewUserId = 100;
             if (UserTable.Keys.Count != 0) {
                 NewUserId = UserTable.Keys.Max() + 1;
@@ -750,7 +761,7 @@ namespace FaceRecognition {
         private void EditUserToolStripMenuItem_Click(object sender, EventArgs e) {
             if (UserListBox.SelectedIndex == -1) return;
             int UserId = UserTable.Keys.ToArray()[UserListBox.SelectedIndex];
-            string UserName = Interaction.InputBox("請輸入新使用者名稱", "新增使用者",UserTable[UserId]);
+            string UserName = Interaction.InputBox("請輸入新使用者名稱", "新增使用者", UserTable[UserId]);
             UserTable[UserId] = UserName;
             tabControl1_SelectedIndexChanged(null, null);
         }

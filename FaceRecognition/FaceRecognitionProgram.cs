@@ -224,11 +224,10 @@ namespace FaceRecognition {
                             continue;
                         }
 
-                        FindFace(moduleOutput);
-
-                        #region 繪圖
+                        
+                        #region 繪圖與事件
                         DisplayPicture(image);
-                        DisplayFaceData(moduleOutput);
+                        FindFace(moduleOutput);
                         #endregion
                     }
                     //發布框
@@ -255,7 +254,11 @@ namespace FaceRecognition {
             var faces = moduleOutput.QueryFaces();
             Form.Invoke(new InvokeDelegate(() => {
                 if (faces.Length == 0) {
-                    OnNotFoundFace?.Invoke(this, null);
+                    OnNotFoundFace?.Invoke(this, new FaceRecognitionEventArgs() {
+                        Faces = faces,
+                        FirstRecognition = null,
+                        Output = moduleOutput
+                    });
                 } else {
                     OnFoundFace?.Invoke(this, new FaceRecognitionEventArgs() {
                         Faces = faces,
@@ -264,10 +267,6 @@ namespace FaceRecognition {
                     });
                 }
             }));
-        }
-
-        private void DisplayFaceData(PXCMFaceData moduleOutput) {
-            Form.DrawInformation(moduleOutput);
         }
 
         private void DisplayPicture(PXCMImage image) {
