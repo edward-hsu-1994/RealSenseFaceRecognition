@@ -15,6 +15,7 @@ using System.Windows.Forms;
 
 namespace FaceRecognition {
     public partial class MainForm : Form {
+        private bool AutoSaveOnStop = false;
         /// <summary>
         /// 所有設備資訊
         /// </summary>
@@ -125,6 +126,10 @@ namespace FaceRecognition {
                 unregisterButton.Enabled = false;
             }));
             #endregion
+
+            if (AutoSaveOnStop) {
+                SaveFileToolStripMenuItem_Click(null, null);
+            }
         }
 
         private void RealSenseProgram_OnStart(object sender, FaceRecognitionEventArgs e) {
@@ -151,6 +156,27 @@ namespace FaceRecognition {
 
             InitMenuBar();
 
+            //預設DB
+            if (File.Exists("Database.zip")) {
+                FilePath = "Database.zip";
+
+                UserTable.Clear();
+                RecognitionFaceData[] faceData = null;
+                Dictionary<int, string> userTable = null;
+                FaceDatabaseFile.Load(
+                    FilePath,
+                    ref faceData,
+                    ref userTable);
+                FaceData = faceData;
+                UserTable = userTable;
+                SaveFileToolStripMenuItem.Enabled = true;
+                if (realSenseProgram.recognitionConfig != null) {
+                    realSenseProgram.recognitionConfig.SetDatabase(FaceData);
+                    realSenseProgram.moduleConfiguration.ApplyChanges();
+                }
+                tabControl1_SelectedIndexChanged(null, null);
+                AutoSaveOnStop = true;
+            }
         }
 
         /// <summary>
