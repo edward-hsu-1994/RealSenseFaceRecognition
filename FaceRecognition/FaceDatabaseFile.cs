@@ -47,7 +47,7 @@ namespace FaceRecognition {
             }
         }
 
-        private static Dictionary<int,string> CSVBinaryToUserTable(byte[] binary) {
+        public static Dictionary<int,string> CSVBinaryToUserTable(byte[] binary) {
             using(MemoryStream stream = new MemoryStream(binary)) {
                 StreamReader reader = new StreamReader(stream);
                 string[] lines = reader.ReadToEnd().Split(new string[] { "\r\n" },StringSplitOptions.RemoveEmptyEntries);
@@ -99,7 +99,7 @@ namespace FaceRecognition {
             FormatData(faceData,userTable);
         }
 
-        private static byte[] StreamToBytes(Stream stream) {
+        public static byte[] StreamToBytes(Stream stream) {
             List<byte> buffer = new List<byte>();
             while (stream.Length != stream.Position) {
                 buffer.Add((byte)stream.ReadByte());

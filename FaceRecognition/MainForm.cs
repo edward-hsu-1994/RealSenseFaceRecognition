@@ -598,15 +598,15 @@ namespace FaceRecognition {
                         }
                     }
                 }
-                
+
                 //繪製使用者方框
                 lock (PicLock)
                     using (var g = Graphics.FromImage(Image)) {
-                        Pen pan = i == 0?
-                            (Pen)Pens.Red.Clone():
+                        Pen pan = i == 0 ?
+                            (Pen)Pens.Red.Clone() :
                             (Pen)Pens.Yellow.Clone();
                         Brush brush = i == 0 ?
-                            Brushes.Red:
+                            Brushes.Red :
                             Brushes.Yellow;
                         pan.Width = 4;
                         g.DrawRectangle(
@@ -615,9 +615,12 @@ namespace FaceRecognition {
                                 range.x, range.y,
                                 range.w, range.h
                                 ));
-                        
+
                         var userId = face.QueryRecognition().QueryUserID();
-                        var text = userId == -1 ? "未註冊使用者" : UserTable[userId];
+                        var text = "未註冊使用者";
+                        try { 
+                            if(userId != -1)text = UserTable[userId];
+                        } catch { }
 
                         var size = g.MeasureString(//取得大小
                            "#" + i + " " + text,
@@ -795,6 +798,80 @@ namespace FaceRecognition {
             //realSenseProgram.UnPaush();
         }
 
+
+        private void ImportToolStripMenuItem_Click(object sender, EventArgs e) {
+            var folder = new FolderBrowserDialog();
+            if (folder.ShowDialog() != DialogResult.OK) return;
+
+            var path = folder.SelectedPath;
+
+            int temp_ = 0;//無用變數
+            var subDirs = new DirectoryInfo(path).EnumerateDirectories()
+                .Where(x => int.TryParse(x.Name, out temp_));
+            #region UserTable讀取
+            var userTablePath = path + $"\\UserTable.csv";
+            Dictionary<int, string> userTable = new Dictionary<int, string>();
+            if (!File.Exists(userTablePath)) {
+                var importUserTable = MessageBox.Show(
+                    "找不到UserTable.csv檔案，該檔案用以將使用者ID與姓名對應，" +
+                    "該檔案雖非必要，但姓名將會使用ID作為代替，您是否繼續匯入?",
+                    "匯入時發現問題",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
+                if (importUserTable != DialogResult.Yes) return;
+
+                foreach (var dir in subDirs) {
+                    userTable[int.Parse(dir.Name)] = dir.Name;
+                }
+            } else {
+                var fileStream = new FileStream(userTablePath, FileMode.Open);
+                userTable = FaceDatabaseFile.CSVBinaryToUserTable(
+                    FaceDatabaseFile.StreamToBytes(fileStream));
+            }
+            #endregion
+
+            #region 照片讀取
+            List<RecognitionFaceData> faceData = new List<RecognitionFaceData>();
+
+            int IdStart = 0;
+            if (FaceData.Count() > 0) {
+                IdStart = FaceData.Select(x => x.PrimaryKey).Max() + 1;
+            }
+
+            foreach (var dir in subDirs) {
+                foreach (var file in dir.EnumerateFiles()) {
+                    var faceImage = new RecognitionFaceData();
+                    faceImage.PrimaryKey = IdStart++;
+                    faceImage.ForeignKey = int.Parse(dir.Name);
+                    faceImage.Image = new Bitmap(file.FullName);
+                    faceData.Add(faceImage);
+                }
+            }
+            if (FaceData == null || FaceData.Count() == 0) {
+                FaceData = faceData.ToArray();
+            } else {
+                FaceData = FaceData.Union(faceData).ToArray();
+            }
+            if (UserTable == null || UserTable.Count == 0) {
+                UserTable = userTable;
+            } else {
+                var TEMP = UserTable.Union(userTable).ToArray();
+                foreach (var keyvalue in TEMP) UserTable[keyvalue.Key] = keyvalue.Value;
+            }
+            SaveFileToolStripMenuItem.Enabled = true;
+            if (realSenseProgram.recognitionConfig != null) {
+                realSenseProgram.recognitionConfig.SetDatabase(FaceData);
+                realSenseProgram.moduleConfiguration.ApplyChanges();
+            }
+            tabControl1_SelectedIndexChanged(null, null);
+            #endregion
+
+            MessageBox.Show(
+                "已成功自指定目錄讀取資料",
+                "匯入成功",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
         #endregion
 
         #region UserList
@@ -889,8 +966,8 @@ namespace FaceRecognition {
 
             UserListBox_SelectedIndexChanged(null, null);
         }
-        #endregion
 
+        #endregion
 
     }
 }

@@ -70,6 +70,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormMenuBar.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -114,6 +115,7 @@
             this.SaveFileToolStripMenuItem,
             this.SaveOtherFileToolStripMenuItem,
             this.toolStripSeparator1,
+            this.ImportToolStripMenuItem,
             this.ExportToolStripMenuItem,
             this.toolStripSeparator2,
             this.EndToolStripMenuItem});
@@ -124,7 +126,7 @@
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.OpenFileToolStripMenuItem.Text = "開啟舊檔(&O)";
             this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
@@ -132,38 +134,38 @@
             // 
             this.SaveFileToolStripMenuItem.Enabled = false;
             this.SaveFileToolStripMenuItem.Name = "SaveFileToolStripMenuItem";
-            this.SaveFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.SaveFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.SaveFileToolStripMenuItem.Text = "儲存(&S)";
             this.SaveFileToolStripMenuItem.Click += new System.EventHandler(this.SaveFileToolStripMenuItem_Click);
             // 
             // SaveOtherFileToolStripMenuItem
             // 
             this.SaveOtherFileToolStripMenuItem.Name = "SaveOtherFileToolStripMenuItem";
-            this.SaveOtherFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.SaveOtherFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.SaveOtherFileToolStripMenuItem.Text = "另存新檔(&N)";
             this.SaveOtherFileToolStripMenuItem.Click += new System.EventHandler(this.SaveOtherFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // ExportToolStripMenuItem
             // 
             this.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem";
-            this.ExportToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.ExportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ExportToolStripMenuItem.Text = "匯出(&E)";
             this.ExportToolStripMenuItem.Click += new System.EventHandler(this.ExportToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // EndToolStripMenuItem
             // 
             this.EndToolStripMenuItem.Name = "EndToolStripMenuItem";
-            this.EndToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.EndToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.EndToolStripMenuItem.Text = "結束(&X)";
             this.EndToolStripMenuItem.Click += new System.EventHandler(this.EndToolStripMenuItem_Click);
             // 
@@ -534,6 +536,13 @@
             this.panel1.Size = new System.Drawing.Size(930, 542);
             this.panel1.TabIndex = 4;
             // 
+            // ImportToolStripMenuItem
+            // 
+            this.ImportToolStripMenuItem.Name = "ImportToolStripMenuItem";
+            this.ImportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ImportToolStripMenuItem.Text = "匯入(&I)";
+            this.ImportToolStripMenuItem.Click += new System.EventHandler(this.ImportToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -622,6 +631,7 @@
         private System.Windows.Forms.ToolStripMenuItem AddImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ColorSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ImportToolStripMenuItem;
     }
 }
 
